@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="./style/reset.css">
+    <title>Planetium</title>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navigate">
+        <div class="logo">
+            <!-- Логотип сайта, изображение логотипа можно заменить на свой путь -->
+            <img src="https://via.placeholder.com/150x50" alt="Planetium Logo">
+        </div>
+        <ul>
+            <li class="tab_navigate"><a href="#" class="link_navigate active" id="home-link"><i class="fas fa-home"></i> Главная</a></li>
+            <li class="tab_navigate"><a href="#" class="link_navigate" id="anime-link"><i class="fas fa-film"></i> Аниме список</a></li>
+            <li class="tab_navigate"><a href="#" class="link_navigate" id="manga-link"><i class="fas fa-book"></i> Манга список</a></li>
+            <li class="tab_navigate"><a href="#" class="link_navigate" id="catalog-link"><i class="fas fa-th-list"></i> Каталог</a></li>
+            <li class="tab_navigate"><a href="#" class="link_navigate" id="forum-link"><i class="fas fa-comments"></i> Форум</a></li>
+        </ul>
+        <!-- Строка поиска -->
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Поиск..." class="search-input">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+
+        <!-- Профиль с иконкой -->
+        <div class="profile-container">
+            <a href="#" class="profile-link">
+                <i class="fas fa-user-circle"></i> <!-- Иконка профиля -->
+            </a>
+        </div>
+    </nav>
+
+    <!-- Список аниме -->
+    <div id="anime-list" class="list_anime_main"></div>
+
+    <script src="./script/API.js" defer></script>
+    <script src="./script/Select_button_active.js" defer></script>
+</body>
+</html>
