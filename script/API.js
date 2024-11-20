@@ -21,8 +21,8 @@ query ($page: Int, $perPage: Int) {
 `;
 
 var variables = {
-    page: 3,  // Первая страница
-    perPage: 80  // Количество аниме на одну страницу
+    page: 1,  // Первая страница
+    perPage: 500  // Количество аниме на одну страницу
 };
 
 var url = 'https://graphql.anilist.co';
@@ -63,7 +63,6 @@ function handleData(data) {
         const title__r = item.title.romaji || item.title.english || 'Без названия';
         const year = item.startDate.year || 'Не указан';
         const poster = item.coverImage ? item.coverImage.large : 'Нет изображения';
-        
         list.innerHTML += `
         <div class="card_title">
             <a href="page.html?id=${id}&title=${encodeURIComponent(title__r)}">

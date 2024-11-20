@@ -1,0 +1,205 @@
+/* Общие стили для страницы */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #030303;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color:white;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.login-form {
+  background-color: #050408;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.521);
+  width: 540px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+.login-form  h2{
+  font-size: 1.9rem;
+  margin-bottom: 1.5em;
+}
+/* Стили для полей ввода */
+.input-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  text-align: left;
+  color: #e6e4e4;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #6625b1;
+}
+
+.input-error {
+  display: none;
+  color: #f44336;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.input-group input.error {
+  border-color: #f44336;
+}
+
+.input-group input.error:focus {
+  border-color: #f44336;
+}
+
+/* Кнопка входа */
+.login-btn {
+  background-color:#6625b1;
+  color: white;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+  background-color: #6625b1;
+  transform: scale(1.05);
+}
+
+/* Ссылка для регистрации */
+.signup-link {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.signup-link a {
+  color: #6625b1;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+* Социальные кнопки */
+.social-login {
+  margin-top: 20px;
+}
+
+.social-login p {
+  font-size: 14px;
+  color: #666;
+  margin: 1em 0;
+}
+
+.social-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin: 8px 0;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.social-btn:hover {
+  transform: scale(1.05);
+}
+
+.social-btn i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.google-btn {
+  background-color: #db4437;
+  color: white;
+}
+
+.facebook-btn {
+  background-color: #3b5998;
+  color: white;
+}
+
+.vk-btn {
+  background-color: #4c75a3; /* Цвет ВКонтакте */
+  color: white;
+}
+
+.mail-btn {
+  background-color: #2b1e5c; /* Цвет Mail.ru */
+  color: white;
+}
+/* Анимация формы */
+.login-form {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Адаптивность */
+@media (max-width: 600px) {
+  .login-form {
+    padding: 20px;
+    width: 90%;
+  }
+  
+  h2 {
+    font-size: 22px;
+  }
+  
+  .input-group input {
+    font-size: 14px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+  }
+
+  .social-btn {
+    font-size: 14px;
+  }
+}
