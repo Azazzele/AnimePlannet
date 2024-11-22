@@ -117,8 +117,6 @@ body.light-theme {
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    width: 100%;
-    max-width: calc(100% / 2 );
 }
 
 /* Стили для списка информации */
@@ -155,23 +153,20 @@ body.light-theme {
 /* Информация */
 .info {
     font-family: var(--font-family);
-    margin: 5rem 0;
+    width: 50%;
+    margin: 1rem 0;
     line-height: 1.4;
     font-size: 16px;
     text-align: left;
     color: var(--text-color-dark);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 колонки одинаковой ширины */
-    grid-template-rows: repeat(2, auto); /* 3 строки, высота автоматически подстраивается */
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
 }
-
-.info h2 {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: white;
+.list_info h2{
+    font-size: 23px;
+    margin: .3em;
 }
-
 .info p {
     white-space: nowrap;
     overflow: hidden;
@@ -200,10 +195,10 @@ body.light-theme {
 
 /* Стили для описания */
 #anime-details p:last-child {
-    font-size: var(--font-size-sm);
     color: inherit;
     font-style: italic;
-    text-align: left;
+    text-align: center;
+    transition: transform .3s ease-in;
 }
 
 /* Кнопка назад */
@@ -221,6 +216,7 @@ body.light-theme {
 #anime-details a:hover {
     background-color: var(--button-hover-color);
 }
+
 
 /* Персонажи */
 .characters {
@@ -259,14 +255,6 @@ h3 {
     border-radius: 8px;
     margin-bottom: 10px;
 }
-
-.character p {
-    width: 100%;
-    text-align: center;
-    font-size: var(--font-size-lg);
-    color: #ccc;
-}
-
 /* Адаптивность */
 @media (max-width: 768px) {
     #anime-details {

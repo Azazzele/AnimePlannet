@@ -208,7 +208,7 @@ body {
 
 /* Стили для изображений */
 img {
-    width: 100%;
+    width: 345px;
     height: 100%;
     max-width: 450px;
     max-height: 450px;
@@ -219,25 +219,23 @@ img {
 
 /* Основной контейнер для аниме */
 .list_anime_main {
-    width: 75%;
-    height: 100%;
+    width: 100%;
+    max-height: 100%;
     display: flex;
     flex-wrap: wrap;
-    padding-top: 8em;
+    margin-top: 10em;
+    gap:10px;
     justify-content: center;
-    gap: var(--card-gap);
-    margin-top: 20px;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 
 /* Стиль карточки аниме */
 .card_title {
-    width: var(--card-width);
-    height: auto;
-    padding: 1rem;
-    background: var(--card-bg);
-    border-radius: 15px;
-    box-shadow: 0 4px 10px var(--shadow);
+    width: 250px;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0px 10px var(--shadow);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     overflow: hidden;
     display: flex;
@@ -262,7 +260,7 @@ img {
 
 /* Стили для изображения */
 .poster {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     margin-bottom: 15px;
     border-radius: 10px;
@@ -275,13 +273,25 @@ img {
     line-height: 1.4;
     font-size: 16px;
     text-align: left;
-    color: var(--text-light);
     
-    display: grid;
-    grid-template-columns: 2fr 1fr; /* 1 колонка для метки, 2 колонки для данных */
-    gap: 1rem;
-}
+    color: var(--text-light);
+    height: 100%;
+    display: -webkit-box; /* Важный момент: используем -webkit-box для поддержания line-clamp */
+    -webkit-line-clamp: 5; /* Ограничиваем количество строк */
+    overflow: hidden; /* Скрываем переполняющий текст */
+    text-overflow: ellipsis; /* Добавляем многоточие в конце строки */
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
 
+}
+.info h2{
+    justify-items: center;
+    text-align: center;
+    gap: 10px   ;
+    flex:  0 0 100%;
+    margin: .5em;
+}
 /* Стили для кнопки "Прокрутить вверх" */
 .scroll-to-top {
     position: fixed;
@@ -301,12 +311,13 @@ img {
     pointer-events: none;
     transition: opacity 0.3s ease-in-out;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .scroll-to-top.show {
     opacity: 1;
     pointer-events: auto;
-}
+}   
 
 .scroll-to-top:hover {
     background-color: #0056b3;
@@ -345,53 +356,74 @@ img {
 }
 /* Общие стили для футера */
 .footer {
-    background-color: #222;
-    color: #fff;
-    padding: 40px 20px;
-    font-size: 14px;
+    background-color: #1a1a1a; /* Темный фон для футера */
+    color: #f0f0f0; /* Легкий оттенок серого для текста */
+    padding: 60px 20px; /* Увеличение отступов для более просторного футера */
+    font-size: 15px; /* Увеличение шрифта для лучшей читаемости */
     margin-top: 50px;
+    border-top: 1px solid #333; /* Легкая разделительная линия сверху */
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Легкая тень для футера */
+    width: 100%;
+    transition: background-color 0.3s ease; /* Плавный переход для фона футера */
 }
 
+.footer:hover {
+    background-color: #111; /* Темный фон при наведении */
+}
+
+/* Контейнер футера */
 .footer-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
+    max-width: 1200px; /* Максимальная ширина футера для больших экранов */
+    margin: 0 auto; /* Центрирование футера */
 }
 
+/* Секции футера */
 .footer-section {
     flex: 1;
-    min-width: 200px;
+    max-width: 350px;
 }
 
 .footer-section h3 {
-    font-size: 18px;
-    margin-bottom: 15px;
+    font-size: 20px; 
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #f5f5f5;
+    text-transform: uppercase; /* Добавление верхнего регистра для заголовков */
 }
 
+/* Стили для списков */
 .footer-section ul {
     list-style: none;
     padding: 0;
 }
 
 .footer-section ul li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 15px;
 }
 
 .footer-section ul li a {
-    color: #fff;
+    color: #ddd; /* Цвет ссылок */
     text-decoration: none;
     font-size: 14px;
+    transition: color 0.3s ease, padding-left 0.3s ease;
 }
 
 .footer-section ul li a:hover {
-    text-decoration: underline;
+    color: #f5a623; /* Цвет ссылок при наведении */
+    padding-left: 8px; /* Легкое смещение */
 }
 
 /* Стили для социальных сетей */
 .social-links {
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    align-items: center;
 }
 
 .social-links li {
@@ -399,22 +431,132 @@ img {
 }
 
 .social-links a {
-    color: #fff;
-    font-size: 20px;
+    color: #f0f0f0;
+    font-size: 24px;
     text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links a:hover {
-    color: #f5a623;
+    color: #f5a623; /* Цвет иконок при наведении */
+    transform: scale(1.2); /* Эффект увеличения иконок */
 }
 
 /* Нижний футер */
 .footer-bottom {
     text-align: center;
-    margin-top: 20px;
-    font-size: 12px;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #bbb;
 }
 
 .footer-bottom p {
     margin: 0;
+    opacity: 0.7;
+}
+
+/* Добавление разделителя между секциями футера */
+.footer-section:not(:last-child) {
+    border-right: 1px solid #333;
+    padding-right: 30px;
+}
+
+.footer-section:last-child {
+    padding-left: 30px;
+}
+
+/* Медиазапросы для адаптивности */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center; /* Переводим футер в колонку на мобильных устройствах */
+        gap: 20px;
+    }
+
+    .footer-section {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 0; /* Убираем отступы на мобильных устройствах */
+    }
+
+    .footer-section h3 {
+        font-size: 18px; /* Уменьшаем размер заголовков на мобильных */
+    }
+
+    .footer-bottom {
+        font-size: 14px;
+    }
+
+    .footer {
+        padding: 40px 15px; /* Уменьшаем padding на мобильных устройствах */
+    }
+}
+
+/* Стили для маленьких экранов */
+@media (max-width: 480px) {
+    .footer {
+        padding: 30px 15px; /* Меньше отступов для маленьких экранов */
+    }
+
+    .footer-section h3 {
+        font-size: 16px; /* Еще меньше размер заголовков для маленьких экранов */
+    }
+
+    .footer-section ul li {
+        font-size: 13px; /* Меньше шрифт для мобильных */
+    }
+
+    .social-links a {
+        font-size: 20px; /* Уменьшаем размер иконок для маленьких экранов */
+    }
+
+    .footer-bottom p {
+        font-size: 12px; /* Меньший шрифт для нижней части футера */
+    }
+}
+
+/* Стили для большого экрана */
+@media (min-width: 1200px) {
+    .footer-container {
+        max-width: 1200px; /* Фиксированная ширина контейнера футера на больших экранах */
+    }
+
+    .footer {
+        padding: 80px 40px; /* Больше отступов для больших экранов */
+    }
+}
+.list_anime_main{
+    padding: .15em;
+    justify-content: start;
+    align-items: end;
+}
+.list_anime_main > .card_title{
+   width: 250px !important; 
+   align-items: center !important;
+   justify-content: start !important;
+   font-size: 14px;
+   margin: .5em;
+}
+.btn{
+     background-color: transparent; /* Прозрачный фон */
+  color: #333; /* Темный цвет текста */
+  border: 2px solid #333; /* Тонкая рамка */
+  padding: 12px 24px; /* Внутренние отступы */
+  font-size: 16px; /* Размер шрифта */
+  font-weight: bold; /* Жирный шрифт */
+  text-transform: uppercase; /* Преобразуем текст в верхний регистр */
+  border-radius: 4px; /* Скругленные углы */
+  cursor: pointer; /* Курсор в виде указателя */
+  transition: all 0.3s ease; /* Плавный переход для всех изменений */
+  margin: 1em;
+}
+/* Эффекты при наведении */
+.btn:hover {
+  background-color: #333; /* Темный фон при наведении */
+  color: white; /* Белый текст */
+}
+
+/* Эффект при нажатии */
+.btn:active {
+  transform: scale(0.98); /* Немного уменьшаем кнопку при нажатии */
 }

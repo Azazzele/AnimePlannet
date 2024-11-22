@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Planetium - место для фанатов аниме и манги. Обзор каталогов, форум и многое другое.">
     <meta name="keywords" content="аниме, манга, каталог, форум, Planetium">
@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    
-    <link rel="stylesheet" href="./style/main.css">
-    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="stylesheet" href="../style/reset.css">
+    <link rel="stylesheet" href="../style/page.css">
+    <link rel="stylesheet" href="../style/main.css">
+
     <title>Planetium</title>
 </head>
 <body>
-
-    <div id="page_up" class="scroll-to-top">
+     <div id="page_up" class="scroll-to-top">
         ↑
     </div>
     <!-- &Навигация -->
@@ -31,12 +31,12 @@
         </div>
         <ul role="menubar">
             <li class="tab_navigate" role="none">
-                <a href="./index" class="link_navigate active" id="home-link" aria-current="page" role="menuitem">
+                <a href="../index.html" class="link_navigate active" id="home-link" aria-current="page" role="menuitem">
                     <i class="fas fa-home" aria-hidden="true"></i> Главная
                 </a>
             </li>
             <li class="tab_navigate" role="none">
-                <a href="./html/anilist.html" class="link_navigate" id="anime-link" role="menuitem">
+                <a href="" class="link_navigate" id="anime-link" role="menuitem">
                     <i class="fas fa-film" aria-hidden="true"></i> Аниме список
                 </a>
             </li>
@@ -72,22 +72,8 @@
             </a>
         </div>
     </nav>
-    <div id="anime-list-new" class="list_anime_main">
-        <div class="recomend_title">
-            <h2>Новинки</h2>
-        </div>
-    </div>
-    <!-- &Список аниме -->
-    <div id="anime-list" class="list_anime_main">
-        <div class="recomend_title">
-            <h2>Может быть интересно</h2>
-        </div>
-    </div>
-    <div id="birthday-list" class="list_anime_main">
-        <div class="recomend_title">
-            <h2>Поздравляем с днем рождения <i class="fas fa-birthday-cake"></i></h2>
-        </div>
-    </div>
+    <div id="list_anime_main"  class="list_anime_main"></div>
+    <button id="btnPrev" class="btn">Вперед</button>
     <footer class="footer">
         <div class="footer-container">
             <!-- &О компании -->
@@ -131,10 +117,7 @@
             <p>&copy; 2024 Planetium. Все права защищены.</p>
         </div>
     </footer>
-    <script  type="module" src="./script/API.js" defer></script>
-    <script src="./script/Select_button_active.js" defer></script>
-    <script src="./script/animation_main.js"></script>
-    <script src="./script/search.js"></script>
-
+    <script src="../script/animation_main.js" defer></script>
+    <script src="../script/animelist.js" defer></script>
 </body>
 </html>
