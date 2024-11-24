@@ -22,7 +22,7 @@ query ($id: Int) {
     }
     coverImage {
       large
-    }
+    } 
     description
     genres
     episodes
@@ -50,7 +50,7 @@ query ($id: Int) {
         name
       }
     }
-    bannerImage
+   
   }
 }
 `
@@ -98,7 +98,7 @@ function handleData(data) {
 
       return `
           <div class="character">
-              <a href="html/character.html?title=${encodeURIComponent(
+              <a href="html/character.html?name=${encodeURIComponent(
 								media.title.romaji)}&id=${characterId}" class="character-link">
                   <img src="${imageUrl}" alt="${edge.node.name.full}">
                   <p>${edge.node.name.full}</p>
@@ -106,7 +106,19 @@ function handleData(data) {
           </div>
       `
   }).join('') : '<p>Персонажи не найдены</p>';
-  
+
+
+  const trailerHTML = media.trailer
+		? `
+    <div class="trailer">
+      <h3>Трейлер:</h3>
+      <a href="${media.trailer.url}" target="_blank">
+        <img src="${media.trailer.thumbnail}" alt="Трейлер ${media.title.romaji}">
+      </a>
+    </div>
+  `
+
+		: ''
   // Строим HTML-контент для подробностей аниме
   detailsContainer.innerHTML = `
       <div class="poster-card">
@@ -156,7 +168,8 @@ function handleData(data) {
               ${characters}
           </div>
       </div>
-  `
+      <div>${trailerHTML}</div>
+  `     
   detailsContainer.classList.add('loaded');
 }
 

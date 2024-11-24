@@ -1,7 +1,7 @@
 const query = `
   query ($page: Int, $perPage: Int) {
     Page(page: $page, perPage: $perPage) {
-      media(type: ANIME, sort: [SCORE_DESC]) {
+      media(type: MANGA, sort: [SCORE_DESC]) {
         id
         title {
           romaji
@@ -14,7 +14,6 @@ const query = `
           year
         }
         averageScore
-		format  
       }
       pageInfo {
         total
@@ -26,15 +25,10 @@ const query = `
 `
 
 let currentPage = 1
-const perPage = 35 // Количество аниме на одной странице
+const perPage = 28 // Количество манги на одной странице
 
-const list = document.querySelector('#list_anime_main') // Контейнер для аниме
-const paginationContainer = document.querySelector('#pagination-container') // Контейнер для пагинации
-
-const variables = {
-	page: currentPage,
-	perPage: perPage,
-}
+const list = document.querySelector('#list_manga_main') // Контейнер для манги
+const paginationContainer = document.querySelector('#paginationContainer') // Контейнер для пагинации
 
 const url = 'https://graphql.anilist.co'
 const options = {
@@ -45,7 +39,7 @@ const options = {
 	},
 	body: JSON.stringify({
 		query: query,
-		variables: variables,
+		variables: { page: currentPage, perPage: perPage },
 	}),
 }
 
@@ -71,10 +65,10 @@ function handleData(data) {
 	// Очистка контейнера перед добавлением новых данных
 	list.innerHTML = ''
 
-	// Отображаем аниме
+	// Отображаем мангу
 	media.forEach(item => {
 		const id = item.id
-		const title = item.title.romaji || 'Без названия'
+		const title = item.title.romaji || item.title.english || 'Без названия'
 		const year = item.startDate.year || 'Не указан'
 		const poster = item.coverImage
 			? item.coverImage.extraLarge
@@ -83,14 +77,15 @@ function handleData(data) {
 			? (item.averageScore / 10).toFixed(2)
 			: 'Нет рейтинга' // Рейтинг с десятичной точкой
 
+		// Строим HTML строку с помощью innerHTML
 		list.innerHTML += `
-      <div class="card_title listaall">
+      <div class="card_title">
         <a href="../page.html?id=${id}&title=${encodeURIComponent(title)}">
           <div class="poster">
             <img src="${poster}" alt="${title}">
           </div>
           <div class="info">
-            <div class="score">${score}</div>
+            <div class="score">Рейтинг: ${score}</div>  <!-- Рейтинг с десятичной точкой -->
           </div>
         </a>
       </div>
@@ -107,6 +102,7 @@ function handleData(data) {
 // Функция для обновления пагинации
 function updatePagination(currentPage, totalPages) {
 	paginationContainer.innerHTML = '' // Очищаем контейнер пагинации
+	// Дополнительные кнопки для навигации (например, для перехода к 1-й, последней странице)
 	if (currentPage > 3) {
 		paginationContainer.innerHTML += `
       <button class="btn" onclick="changePage(1)">Первая</button>
@@ -114,9 +110,11 @@ function updatePagination(currentPage, totalPages) {
 	}
 	// Кнопка "Назад"
 	if (currentPage > 1) {
-		paginationContainer.innerHTML += `<button class="btn" onclick="changePage(${
-			currentPage - 1
-		})">Назад</button>`
+		paginationContainer.innerHTML += `
+      <button class="btn" onclick="changePage(${
+				currentPage - 1
+			})">Назад</button>
+    `
 	}
 
 	// Текущая страница
@@ -124,9 +122,11 @@ function updatePagination(currentPage, totalPages) {
 
 	// Кнопка "Вперед"
 	if (currentPage < totalPages) {
-		paginationContainer.innerHTML += `<button class="btn" onclick="changePage(${
-			currentPage + 1
-		})">Вперед</button>`
+		paginationContainer.innerHTML += `
+      <button class="btn" onclick="changePage(${
+				currentPage + 1
+			})">Вперед</button>
+    `
 	}
 }
 
@@ -139,11 +139,6 @@ function changePage(page) {
 
 // Функция для отправки запроса с новыми параметрами
 function fetchData() {
-	const variables = {
-		page: currentPage, // Текущая страница
-		perPage: perPage, // Количество аниме на одну страницу
-	}
-
 	const options = {
 		method: 'POST',
 		headers: {
@@ -152,7 +147,7 @@ function fetchData() {
 		},
 		body: JSON.stringify({
 			query: query,
-			variables: variables,
+			variables: { page: currentPage, perPage: perPage },
 		}),
 	}
 

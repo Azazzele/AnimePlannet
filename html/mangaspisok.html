@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Planetium - место для фанатов аниме и манги. Обзор каталогов, форум и многое другое.">
     <meta name="keywords" content="аниме, манга, каталог, форум, Planetium">
@@ -14,14 +14,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
+    
     <link rel="stylesheet" href="../style/reset.css">
-    <link rel="stylesheet" href="../style/page.css">
     <link rel="stylesheet" href="../style/main.css">
-
-    <title>Planetium</title>
+    
 </head>
 <body>
-     <div id="page_up" class="scroll-to-top">
+         <div id="page_up" class="scroll-to-top">
         ↑
     </div>
     <!-- &Навигация -->
@@ -36,12 +35,12 @@
                 </a>
             </li>
             <li class="tab_navigate" role="none">
-                <a href="#" class="link_navigate" id="anime-link" role="menuitem">
+                <a href="./anilist.html" class="link_navigate" id="anime-link" role="menuitem">
                     <i class="fas fa-film" aria-hidden="true"></i> Аниме список
                 </a>
             </li>
             <li class="tab_navigate" role="none">
-                <a href="./mangaspisok.html" class="link_navigate" id="manga-link" role="menuitem">
+                <a href="#" class="link_navigate" id="manga-link" role="menuitem">
                     <i class="fas fa-book" aria-hidden="true"></i> Манга список
                 </a>
             </li>
@@ -72,9 +71,11 @@
             </a>
         </div>
     </nav>
-    <div id="list_anime_main"  class="list_anime_main"></div>
-    <div id="pagination-container"></div>
-        <footer class="footer">
+
+    <div id="list_manga_main"  class="list_anime_main"></div>
+    <div id="paginationContainer"></div>
+
+    <footer class="footer">
         <div class="footer-container">
             <!-- &О компании -->
             <div class="footer-section">
@@ -116,10 +117,8 @@
         <div class="footer-bottom">
             <p>&copy; 2024 Planetium. Все права защищены.</p>
         </div>
-    </footer>
-    <script src="../script/animation_main.js" defer></script>
-    <script src="../script/animelist.js" defer></script>
+    <script src="../script/mangalist.js"></script>
     <script src="./script/search.js"></script>
-    
+    <script src="../script/animelist.js" defer></script>
 </body>
 </html>

@@ -18,7 +18,7 @@
     --font-size-lg: 2.5rem; /* Крупные заголовки */
     --font-size-sm: 0.9rem; /* Маленький шрифт для текста */
     --border-radius: 10px; /* Радиус скругления для элементов */
-    --max-width: 1200px; /* Максимальная ширина контейнера */
+    --max-width: 1340px; /* Максимальная ширина контейнера */
     --poster-width: 500px; /* Максимальная ширина постера */
     --character-max-width: 120px; /* Максимальная ширина персонажей */
     --gap: 20px;
@@ -52,7 +52,7 @@ body.light-theme {
     text-decoration: none;
     position: fixed;
     top: 80px;
-    left: 10%;
+    left: 5%;
     background-color: var(--accent-color-dark);
     color: white;
     font-size: 18px;
@@ -153,14 +153,12 @@ body.light-theme {
 /* Информация */
 .info {
     font-family: var(--font-family);
-    width: 50%;
-    margin: 1rem 0;
+    margin: .5rem 0;
     line-height: 1.4;
     font-size: 16px;
     text-align: left;
     color: var(--text-color-dark);
     display: flex;
-    align-items: stretch;
     justify-content: space-between;
 }
 .list_info h2{
@@ -232,25 +230,19 @@ h3 {
 
 .character-list {
     display: flex;
+    overflow: hidden;
+    flex-wrap: wrap;
     width: 100%;
     max-width: 100%;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: start;
-    gap: var(--gap);
 }
 
-.character {
-    display: flex;
-    width: 265px;
+.character{
     max-width: 100%;
-    align-items: start;
-    text-align: center;
-    justify-content: stretch;
 }
-
 .character img {
-    width: 240px;
+    width: 200px;
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;

@@ -1,15 +1,14 @@
 /* Определение CSS переменных */
 :root {
-    --main-bg-color: #1a1a1a;
+    --main-bg-color: #0c0c0c;
     --nav-bg-color: #222222;
     --link-color: #d3d3d3;
-    --link-hover-bg: #0e062057;
+    --link-hover-bg: #ff5e01;
     --link-hover-color: #ffffff;
     --active-link-bg: #0e062057;
     --active-link-color: #ffffff;
     --text-light: #ccc;
     --text-dark: #bbb;
-    --highlight-bg: #ff4c4c;
     --card-bg: linear-gradient(135deg, rgba(37, 37, 37, 0.8), rgba(0, 0, 0, 0.8));
     --shadow: rgba(0, 0, 0, 0.3);
     --hover-shadow: rgba(0, 0, 0, 0.4);
@@ -41,16 +40,15 @@ body {
 
 /* Стиль навигации */
 .navigate {
-    position: fixed;
+    position: relative;
     z-index: 1000;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: var(--nav-bg-color);
+    justify-content: space-evenly;
+    background-color: var(--nav-bg-color) transparent;
     box-shadow: 0 2px 8px var(--shadow);
     transition: transform 0.4s ease;
 }
@@ -58,10 +56,14 @@ body {
 .active_nav {
     transform: translateY(-100%);
 }
-
+.more{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
 /* Стиль для логотипа */
 .navigate .logo {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -86,6 +88,7 @@ body {
     padding: 0.5rem;
     font-size: 1rem;
     border-radius: 20px;
+    display: none;
     border: none;
     background-color: var(--nav-bg-color);
     color: var(--active-link-color);
@@ -100,23 +103,24 @@ body {
 /* Стили для кнопки поиска */
 .search-btn {
     padding: 0.5rem;
-    background-color: #222222;
     color: #fff;
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    transition: background-color .3s  ease-in;
 }
 
 .search-btn i {
     font-size: 1.2rem;
+    
 }
 
 .search-btn:hover {
-    background-color: #ff4c4c;
+    background-color: var(--link-hover-bg);
 }
 
 /* Стили для списка навигации */
-.navigate > ul {
+.navigate  ul {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,13 +176,12 @@ body {
 }
 .recomend_title {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    text-align: center;
+    text-align:right;
     width: 100%;
     padding: 1rem 0; 
-    margin-bottom: 20px; 
-    text-transform: uppercase; 
+    text-transform:capitalize; 
     letter-spacing: 1px; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -208,23 +211,23 @@ body {
 
 /* Стили для изображений */
 img {
-    width: 345px;
-    height: 100%;
+    width: 360px;
+    height: auto;
     max-width: 450px;
     max-height: 450px;
     object-fit: cover;
-    border-radius: 15px;
     transition: transform 0.3s ease-in-out;
 }
 
 /* Основной контейнер для аниме */
 .list_anime_main {
-    width: 100%;
+    width: 90%;
     max-height: 100%;
     display: flex;
     flex-wrap: wrap;
     margin-top: 10em;
-    gap:10px;
+    gap:15px;
+    align-items: baseline;
     justify-content: center;
     overflow: hidden;
     margin-bottom: 10px;
@@ -232,17 +235,27 @@ img {
 
 /* Стиль карточки аниме */
 .card_title {
-    width: 250px;
-    height: 100%;
-    border-radius: 5px;
-    box-shadow: 0 0px 10px var(--shadow);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s 
+    ease-in-out,border-bottom  .2s ease-in-out;
     overflow: hidden;
     display: flex;
+    align-items: end;
     flex-direction: column;
     justify-content: space-between;
-}
+    overflow: hidden;
+    gap: 20px;
 
+}
+.card_title:hover{
+    border-bottom: 5px solid orange ;
+}
+.wrapper{
+    width: 100%;
+}
+#anime-list-new{
+    width: 90%;
+    margin: 0 auto;
+}
 /* Подъем карточки при наведении */
 .card_title:hover {
     transform: translateY(-10px);
@@ -268,26 +281,25 @@ img {
 
 /* Информация о аниме */
 .info {
+    width: 100%;
+    height: aut;
     font-family: var(--font-family-info);
     margin-top: 1rem;
-    line-height: 1.4;
-    font-size: 16px;
+    line-height: 1.1;
+    font-size: 14px;
     text-align: left;
-    
     color: var(--text-light);
     height: 100%;
-    display: -webkit-box; /* Важный момент: используем -webkit-box для поддержания line-clamp */
-    -webkit-line-clamp: 5; /* Ограничиваем количество строк */
+    display: flex;
     overflow: hidden; /* Скрываем переполняющий текст */
     text-overflow: ellipsis; /* Добавляем многоточие в конце строки */
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
+
 
 }
 .info h2{
-    justify-items: center;
-    text-align: center;
+    justify-items: left;
+    text-align: left;
     gap: 10px   ;
     flex:  0 0 100%;
     margin: .5em;
@@ -526,16 +538,13 @@ img {
     }
 }
 .list_anime_main{
-    padding: .15em;
-    justify-content: start;
-    align-items: end;
+    padding: 1.15em;
 }
+
 .list_anime_main > .card_title{
-   width: 250px !important; 
-   align-items: center !important;
+   width: 220px !important; 
+   align-items: start !important;
    justify-content: start !important;
-   font-size: 14px;
-   margin: .5em;
 }
 .btn{
      background-color: transparent; /* Прозрачный фон */
@@ -559,4 +568,41 @@ img {
 /* Эффект при нажатии */
 .btn:active {
   transform: scale(0.98); /* Немного уменьшаем кнопку при нажатии */
+}
+#list_manga_main,
+#list_anime_main{
+    margin: 0;
+}
+#list_anime_main  .poster img,
+#list_anime_main .poster img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+#list_anime_main  > .card_title,
+#list_manga_main  > .card_title {
+    width: 100%;
+    height: 100%;
+    margin: 20px;
+}
+#list_anime_main  > .card_title:hover,
+#list_manga_main  .card_title:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+#list_anime_main .poster img,
+#list_manga_main  .poster img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.score{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

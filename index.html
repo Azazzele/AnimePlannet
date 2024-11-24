@@ -13,14 +13,11 @@
     <link rel="icon" href="https://via.placeholder.com/16x16" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-    
     <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/reset.css">
     <title>Planetium</title>
 </head>
 <body>
-
     <div id="page_up" class="scroll-to-top">
         ↑
     </div>
@@ -28,59 +25,59 @@
     <nav class="navigate" aria-label="Основная навигация">
         <div class="logo" aria-label="Логотип Planetium">
             <img src="https://via.placeholder.com/150x50" alt="Planetium Logo">
+            <ul role="menubar">
+                <li class="tab_navigate" role="none">
+                    <a href="#" class="link_navigate" id="home-link" aria-current="page" role="menuitem">
+                        <i class="fas fa-house-user" aria-hidden="true"></i> Главная
+                    </a>
+                </li>
+                <li class="tab_navigate" role="none">
+                    <a href="./html/anilist.html" class="link_navigate" id="anime-link" role="menuitem">
+                        <i class="fas fa-tv" aria-hidden="true"></i> Аниме список
+                    </a>
+                </li>
+                <li class="tab_navigate" role="none">
+                    <a href="./html/mangaspisok.html" class="link_navigate" id="manga-link" role="menuitem">
+                        <i class="fas fa-book-open" aria-hidden="true"></i> Манга список
+                    </a>
+                </li>
+                <li class="tab_navigate" role="none">
+                    <a href="#" class="link_navigate" id="catalog-link" role="menuitem">
+                        <i class="fas fa-list-ul" aria-hidden="true"></i> Каталог
+                    </a>
+                </li>
+                <li class="tab_navigate" role="none">
+                    <a href="#" class="link_navigate" id="forum-link" role="menuitem">
+                        <i class="fas fa-comment-dots" aria-hidden="true"></i> Форум
+                    </a>
+                </li>
+            </ul>
         </div>
-        <ul role="menubar">
-            <li class="tab_navigate" role="none">
-                <a href="./index" class="link_navigate active" id="home-link" aria-current="page" role="menuitem">
-                    <i class="fas fa-home" aria-hidden="true"></i> Главная
-                </a>
-            </li>
-            <li class="tab_navigate" role="none">
-                <a href="./html/anilist.html" class="link_navigate" id="anime-link" role="menuitem">
-                    <i class="fas fa-film" aria-hidden="true"></i> Аниме список
-                </a>
-            </li>
-            <li class="tab_navigate" role="none">
-                <a href="#" class="link_navigate" id="manga-link" role="menuitem">
-                    <i class="fas fa-book" aria-hidden="true"></i> Манга список
-                </a>
-            </li>
-            <li class="tab_navigate" role="none">
-                <a href="#" class="link_navigate" id="catalog-link" role="menuitem">
-                    <i class="fas fa-th-list" aria-hidden="true"></i> Каталог
-                </a>
-            </li>
-            <li class="tab_navigate" role="none">
-                <a href="#" class="link_navigate" id="forum-link" role="menuitem">
-                    <i class="fas fa-comments" aria-hidden="true"></i> Форум
-                </a>
-            </li>
-        </ul>
+        <div class="more">
+                <!-- &Строка поиска -->
+            <div>
+                <form action="" method="get" class="search-container">
+                    <input type="text" name="query" id="search" placeholder="Поиск..." class="search-input">
+                    <button type="submit" class="search-btn" id="button_search"><i class="fas fa-search-plus"></i></button>
+                </form>
+            </div>
 
-        <!-- &Строка поиска -->
-        <div>
-            <form action="" method="get" class="search-container">
-                <input type="text" name="query" id="search" placeholder="Поиск..." class="search-input">
-                <button type="submit" class="search-btn" id="button_search"><i class="fas fa-search"></i></button>
-            </form>
-        </div>
-
-        <!-- &Профиль с иконкой -->
-        <div class="profile-container">
-            <a href="./html/error.html" class="profile-link" aria-label="Профиль">
-                <i class="fas fa-user-circle" aria-hidden="true"></i> 
-            </a>
+            <!-- &Профиль с иконкой -->
+            <div class="profile-container">
+                <a href="./html/error.html" class="profile-link" aria-label="Профиль">
+                    <i class="fas fa-user-alt" aria-hidden="true"></i> 
+                </a>
+            </div>
         </div>
     </nav>
     <div id="anime-list-new" class="list_anime_main">
         <div class="recomend_title">
-            <h2>Новинки</h2>
+            <h2>Осень 2024</h2>
         </div>
     </div>
-    <!-- &Список аниме -->
-    <div id="anime-list" class="list_anime_main">
+     <div id="anime-list" class="list_anime_main">
         <div class="recomend_title">
-            <h2>Может быть интересно</h2>
+            <h2>Тебе может понравится</h2>
         </div>
     </div>
     <div id="birthday-list" class="list_anime_main">
@@ -90,13 +87,10 @@
     </div>
     <footer class="footer">
         <div class="footer-container">
-            <!-- &О компании -->
             <div class="footer-section">
                 <h3>О компании</h3>
                 <p>Planetium - ваше место для знакомства с миром аниме и манги. Присоединяйтесь к нашему сообществу!</p>
             </div>
-    
-            <!-- &Навигация -->
             <div class="footer-section">
                 <h3>Навигация</h3>
                 <ul>
@@ -107,34 +101,28 @@
                     <li><a href="#" id="forum-link">Форум</a></li>
                 </ul>
             </div>
-    
-            <!-- &Социальные сети -->
             <div class="footer-section">
                 <h3>Следите за нами</h3>
                 <ul class="social-links">
-                    <li><a href="#" class="social-link"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                    <li><a href="#" class="social-link"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    <li><a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    <li><a href="#" class="social-link"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    <li><a href="#" class="social-link"><i class="fab fa-facebook-square"></i> Facebook</a></li>
+                    <li><a href="#" class="social-link"><i class="fab fa-twitter-square"></i> Twitter</a></li>
+                    <li><a href="#" class="social-link"><i class="fab fa-instagram-square"></i> Instagram</a></li>
+                    <li><a href="#" class="social-link"><i class="fab fa-youtube-square"></i> YouTube</a></li>
                 </ul>
             </div>
-    
-            <!-- &Контактная информация -->
             <div class="footer-section">
                 <h3>Контакты</h3>
-                <p>Email: <a href="mailto:contact@planetium.com">contact@planetium.com</a></p>
-                <p>Телефон: +1 (123) 456-7890</p>
+                <p>Email: <a href="mailto:contact@planetium.com"><i class="fas fa-envelope"></i> contact@planetium.com</a></p>
+                <p>Телефон: <i class="fas fa-phone-alt"></i> +1 (123) 456-7890</p>
             </div>
         </div>
-    
         <div class="footer-bottom">
             <p>&copy; 2024 Planetium. Все права защищены.</p>
         </div>
     </footer>
-    <script  type="module" src="./script/API.js" defer></script>
+    <script type="module" src="./script/API.js" defer></script>
     <script src="./script/Select_button_active.js" defer></script>
     <script src="./script/animation_main.js"></script>
     <script src="./script/search.js"></script>
-
 </body>
 </html>

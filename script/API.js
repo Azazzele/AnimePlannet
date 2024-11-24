@@ -1,8 +1,8 @@
 import './newanime.js'
 import './birthday.js'
 
-const list = document.querySelector('#anime-list')
-const list_new = document.querySelector('#anime-list-new')
+const list = document.querySelector('#anime-list') // Список всех аниме
+const listNew = document.querySelector('#anime-list-new') // Список новинок
 
 const query = `
 query ($page: Int, $perPage: Int) {
@@ -25,7 +25,7 @@ query ($page: Int, $perPage: Int) {
 `
 
 const variables = {
-	page: 125, // Первая страница
+	page: 1, // Первая страница
 	perPage: 1000, // Количество аниме на одну страницу
 }
 
@@ -42,8 +42,6 @@ const options = {
 	}),
 }
 
-console.log('Options:', options)
-
 fetch(url, options)
 	.then(handleResponse) // Обрабатываем ответ
 	.then(handleData) // Обрабатываем данные
@@ -59,8 +57,6 @@ function handleResponse(response) {
 
 // Функция для обработки данных
 function handleData(data) {
-	console.log('Received Data:', data) // Логируем полученные данные для отладки
-
 	const media = data.data.Page.media
 	const currentYear = new Date().getFullYear()
 
@@ -68,31 +64,60 @@ function handleData(data) {
 	const newAnime = media.filter(
 		item => item.startDate && item.startDate.year === currentYear
 	)
-	console.log('New Anime:', newAnime) 
 
 	const randomAnime = getRandomItems(media, 7)
-	console.log('Random Anime:', randomAnime) 
+
+	// Отображаем новинки (аниме, выпущенные в текущем году)
+	newAnime.forEach(item => {
+		const id = item.id
+		const title = item.title.romaji || item.title.english || 'Без названия'
+		const year = item.startDate.year || 'Не указан'
+		const poster = item.coverImage ? item.coverImage.large : 'default-image.jpg'
+
+		listNew.innerHTML += `
+            <div class="card_title">
+                <div class="wrapper">
+                    <a href="page.html?id=${id}&title=${encodeURIComponent(
+			title
+		)}">
+                        <div class="poster">
+                            <img src="${poster}" alt="${title}">
+                        </div>
+                        <div class="info">
+                            <h2>${title}</h2>
+                            <p>${year}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>`
+	})
 
 	// Отображаем случайные аниме
 	randomAnime.forEach(item => {
 		const id = item.id
 		const title = item.title.romaji || item.title.english || 'Без названия'
 		const year = item.startDate.year || 'Не указан'
-		const poster = item.coverImage ? item.coverImage.large : 'default-image.jpg' // Используем изображение по умолчанию
+		const poster = item.coverImage ? item.coverImage.large : 'default-image.jpg'
 
 		list.innerHTML += `
+		
             <div class="card_title">
-                <a href="page.html?id=${id}&title=${encodeURIComponent(title)}">
-                    <div class="poster">
-                        <img src="${poster}" alt="${title}">
-                    </div>
-                    <div class="info">
-                        <h2>${title}</h2>
-                        <p>${year}</p>
-                    </div>
-                </a>
+                <div class="wrapper">
+                    <a href="page.html?id=${id}&title=${encodeURIComponent(
+			title
+		)}">
+                        <div class="poster">
+                            <img src="${poster}" alt="${title}">
+                        </div>
+                        <div class="info">
+                            <h2>${title}</h2>
+                            <p>${year}</p>
+                        </div>
+                    </a>
+                </div>
             </div>`
 	})
+	
 }
 
 // Функция для выбора случайных элементов из массива
@@ -111,9 +136,4 @@ function getRandomItems(arr, num) {
 	}
 
 	return shuffled.slice(0, num) // Возвращаем нужное количество случайных элементов
-}
-
-// Функция для обработки ошибок
-function handleError(error) {
-	console.error('Ошибка при получении данных:', error) // Логируем ошибку
 }

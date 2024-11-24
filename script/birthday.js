@@ -59,26 +59,17 @@ function handleData(data) {
 	console.log('Received Data:', data)
 
 	const characters = data.data.Page.characters
-    const randomAnime = getRandomItems(characters, 14)
+    const randomAnime = getRandomItems(characters, 7)
 
 	// Если персонажи найдены, добавляем их в список
 	randomAnime.forEach(element => {
 		const id = element.id
 		const FullName = element.name.full
-		const age = element.age || ' ' // Если возраст не указан, выводим 'Не указан'
-		const dateOfBirth =
-			element.dateOfBirth &&
-			element.dateOfBirth.day &&
-			element.dateOfBirth.month &&
-			element.dateOfBirth.year
-				? `${element.dateOfBirth.day}/${element.dateOfBirth.month}/${element.dateOfBirth.year}`
-				: 'Не указано' // Если дата рождения или какой-то элемент не указан, возвращаем "Не указано"
-
 		const img = element.image ? element.image.large : 'default-image.jpg' // Если изображения нет, подставляем изображение по умолчанию
 
 		birthday_list.innerHTML += `
             <div class="card_title">
-                <a href="page.html?id=${id}&name=${encodeURIComponent(
+                <a href="html/characters.html?id=${id}&name=${encodeURIComponent(
 			FullName
 		)}">
                     <div class="poster">
@@ -86,8 +77,6 @@ function handleData(data) {
                     </div>
                     <div class="info">
                         <h2>${FullName}</h2>
-                        <h2>${age}</h2>
-                        <h2>${dateOfBirth}</h2>
                     </div>
                 </a>
             </div>`
