@@ -12,7 +12,6 @@
     <meta property="og:url" content="https://ваш-сайт.com">
     <link rel="icon" href="https://via.placeholder.com/16x16" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/reset.css">
     <title>Planetium</title>
@@ -21,7 +20,7 @@
     <div id="page_up" class="scroll-to-top">
         ↑
     </div>
-    <!-- &Навигация -->
+    <!-- Навигация -->
     <nav class="navigate" aria-label="Основная навигация">
         <div class="logo" aria-label="Логотип Planetium">
             <img src="https://via.placeholder.com/150x50" alt="Planetium Logo">
@@ -54,15 +53,17 @@
             </ul>
         </div>
         <div class="more">
-                <!-- &Строка поиска -->
+            <!-- Строка поиска -->
             <div>
                 <form action="" method="get" class="search-container">
                     <input type="text" name="query" id="search" placeholder="Поиск..." class="search-input">
-                    <button type="submit" class="search-btn" id="button_search"><i class="fas fa-search-plus"></i></button>
+                    <button type="submit" class="search-btn" id="button_search">
+                        <i class="fas fa-search-plus" aria-hidden="true"></i>
+                    </button>
                 </form>
             </div>
 
-            <!-- &Профиль с иконкой -->
+            <!-- Профиль с иконкой -->
             <div class="profile-container">
                 <a href="./html/error.html" class="profile-link" aria-label="Профиль">
                     <i class="fas fa-user-alt" aria-hidden="true"></i> 
@@ -70,21 +71,56 @@
             </div>
         </div>
     </nav>
+
+    <!-- Разделы с аниме -->
     <div id="anime-list-new" class="list_anime_main">
         <div class="recomend_title">
             <h2>Осень 2024</h2>
         </div>
     </div>
-     <div id="anime-list" class="list_anime_main">
+    
+    <!-- Раздел для случайных аниме -->
+    <div id="anime-list" class="list_anime_main">
         <div class="recomend_title">
             <h2>Тебе может понравится</h2>
         </div>
     </div>
+
+    <!-- Раздел для аниме с Днем Рождения -->
     <div id="birthday-list" class="list_anime_main">
         <div class="recomend_title">
             <h2>Поздравляем с днем рождения <i class="fas fa-birthday-cake"></i></h2>
         </div>
     </div>
+    
+    <!-- Новый раздел: Популярные аниме -->
+    <div id="anime-list-popular" class="list_anime_main">
+        <div class="recomend_title">
+            <h2>Популярные аниме</h2>
+        </div>
+    </div>
+
+    <!-- Новый раздел: Топовые аниме -->
+    <div id="anime-list-top-rated" class="list_anime_main">
+        <div class="recomend_title">
+            <h2>Топовые аниме</h2>
+        </div>
+    </div>
+
+    <!-- Новый раздел: Экшен-аниме -->
+    <div id="anime-list-action" class="list_anime_main">
+        <div class="recomend_title">
+            <h2>Экшен-аниме</h2>
+        </div>
+    </div>
+
+    <!-- Новый раздел: Драма-аниме -->
+    <div id="anime-list-drama" class="list_anime_main">
+        <div class="recomend_title">
+            <h2>Драма-аниме</h2>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -94,11 +130,11 @@
             <div class="footer-section">
                 <h3>Навигация</h3>
                 <ul>
-                    <li><a href="#" id="home-link">Главная</a></li>
-                    <li><a href="#" id="anime-link">Аниме список</a></li>
-                    <li><a href="#" id="manga-link">Манга список</a></li>
-                    <li><a href="#" id="catalog-link">Каталог</a></li>
-                    <li><a href="#" id="forum-link">Форум</a></li>
+                    <li><a href="#" id="home-link"><i class="fas fa-house-user"></i> Главная</a></li>
+                    <li><a href="#" id="anime-link"><i class="fas fa-tv"></i> Аниме список</a></li>
+                    <li><a href="#" id="manga-link"><i class="fas fa-book-open"></i> Манга список</a></li>
+                    <li><a href="#" id="catalog-link"><i class="fas fa-list-ul"></i> Каталог</a></li>
+                    <li><a href="#" id="forum-link"><i class="fas fa-comment-dots"></i> Форум</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -120,6 +156,7 @@
             <p>&copy; 2024 Planetium. Все права защищены.</p>
         </div>
     </footer>
+
     <script type="module" src="./script/API.js" defer></script>
     <script src="./script/Select_button_active.js" defer></script>
     <script src="./script/animation_main.js"></script>

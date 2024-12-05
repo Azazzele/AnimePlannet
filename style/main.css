@@ -221,12 +221,9 @@ img {
 
 /* Основной контейнер для аниме */
 .list_anime_main {
-    width: 90%;
     max-height: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 10em;
-    gap:15px;
     align-items: baseline;
     justify-content: center;
     overflow: hidden;
@@ -243,18 +240,21 @@ img {
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-    gap: 20px;
+    height: 100%;
+    width: 100%;
+    margin: 10px;
 
 }
-.card_title:hover{
-    border-bottom: 5px solid orange ;
-}
+
 .wrapper{
     width: 100%;
 }
 #anime-list-new{
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
+}
+#anime-list-new .card_title  a .poster{
+  margin: 1em;
 }
 /* Подъем карточки при наведении */
 .card_title:hover {
@@ -290,19 +290,21 @@ img {
     text-align: left;
     color: var(--text-light);
     height: 100%;
-    display: flex;
     overflow: hidden; /* Скрываем переполняющий текст */
     text-overflow: ellipsis; /* Добавляем многоточие в конце строки */
-    flex-wrap: wrap;
 
 
 }
 .info h2{
-    justify-items: left;
-    text-align: left;
-    gap: 10px   ;
+    justify-items: center;
+    text-align: center;
+    gap: 20px   ;
     flex:  0 0 100%;
-    margin: .5em;
+    margin: 1.1em;
+}
+.info p{
+    color: var(--link-hover-bg);
+    text-align: center;
 }
 /* Стили для кнопки "Прокрутить вверх" */
 .scroll-to-top {
@@ -542,7 +544,7 @@ img {
 }
 
 .list_anime_main > .card_title{
-   width: 220px !important; 
+   width: 15% !important; 
    align-items: start !important;
    justify-content: start !important;
 }
@@ -578,31 +580,73 @@ img {
     width: 100%;
     height: 460px;
     object-fit: cover;
-    border-radius: 4px;
+
     margin-right: 15px;
 }
 #list_anime_main  > .card_title,
 #list_manga_main  > .card_title {
     width: 100%;
     height: 100%;
-    margin: 20px;
+    margin: 1em;
 }
 #list_anime_main  > .card_title:hover,
 #list_manga_main  .card_title:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
-#list_anime_main .poster img,
-#list_manga_main  .poster img {
-    width: 100%;
-    height: 460px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-right: 15px;
-}
 
 .score{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+/* Стили для карусели */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+/* Стили для кнопок при наведении */
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }

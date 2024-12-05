@@ -85,7 +85,7 @@ function handleData(data) {
             <img src="${poster}" alt="${title}">
           </div>
           <div class="info">
-            <div class="score">Рейтинг: ${score}</div>  <!-- Рейтинг с десятичной точкой -->
+            <div class="score">${score}</div>  <!-- Рейтинг с десятичной точкой -->
           </div>
         </a>
       </div>

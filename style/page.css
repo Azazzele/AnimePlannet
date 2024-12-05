@@ -30,9 +30,6 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100%;
     box-sizing: border-box;
     text-align: center;
@@ -51,8 +48,8 @@ body.light-theme {
 .back-to-page {
     text-decoration: none;
     position: fixed;
-    top: 80px;
-    left: 5%;
+    top: 10px;
+    left: 0%;
     background-color: var(--accent-color-dark);
     color: white;
     font-size: 18px;
@@ -60,27 +57,42 @@ body.light-theme {
     border-radius: 5px;
     cursor: pointer;
     transition: transform 0.3s ease;
+    z-index: 1000;
 }
 
 .back-to-page:hover {
     background-color: var(--button-hover-color);
     transform: scale(1.05);
 }
-
+.poster-card  h2{
+    font-size: 1.5em;
+}
+.banner{
+      max-width: 100%;
+    width: 100%;
+    height: 300px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2)); /* Исправил синтаксис drop-shadow */
+    overflow: hidden;
+    object-fit: contain;
+}
+.banner > img{
+     width: 100%;
+    height: 100%; /* Добавлен height: 100% для адаптации изображения по высоте */
+    object-fit: cover; /* Используем object-fit: cover, чтобы изображение полностью покрывало область */
+   
+}
 /* Контейнер для подробной информации */
 #anime-details {
     background-color: var(--secondary-bg-color-dark);
     display: flex;
-    max-width: var(--max-width);
     width: 100%;
-    padding: 20px;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
-    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
-    height: 100%;
-    margin-top: 1em;
+    height: 100%; 
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -94,38 +106,41 @@ body.light-theme {
 /* Карточка с постером */
 .poster-card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: var(--gap);
     align-items: center;
-    justify-content: start;
+    justify-content: space-evenly;
     width: 100%;
 }
 
 /* Основная информация */
 .main_info {
-    display: flex;
     justify-content: space-evenly;
-    align-items: start;
-    justify-items: start;
-    width: 100%;
+    align-items: center;
+    height: 100%;
     gap: var(--gap);
 }
 
 /* Постер */
-.poster {
+.poster {   
+    margin: 2.5em;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: start;
 }
 
 /* Стили для списка информации */
 .list_info {
     height: 100%;
+    width: 80%;
+    font-size: 22px;
+    letter-spacing: 3px;
+    line-height: 1.4;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: stretch;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .list_info p strong {
@@ -138,7 +153,7 @@ body.light-theme {
 
 /* Изображение обложки аниме */
 #anime-details .poster-card img {
-    width: 275px;
+    width: 375px;
     max-width: var(--poster-width);
     height: auto;
     border-radius: var(--border-radius);
@@ -146,45 +161,56 @@ body.light-theme {
     transition: transform 0.3s ease-in-out;
 }
 
-#anime-details img:hover {
-    transform: scale(1.01); /* Легкое увеличение изображения при наведении */
-}
 
-/* Информация */
+/* Стиль для контейнера с информацией */
 .info {
+    max-width: 100%;
+    height: 100%;
     font-family: var(--font-family);
-    margin: .5rem 0;
-    line-height: 1.4;
     font-size: 16px;
-    text-align: left;
+    text-align: center;
     color: var(--text-color-dark);
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+    align-items: start;
+    flex-wrap: wrap;
+    background-color: #0c0b0b;
 }
-.list_info h2{
-    font-size: 23px;
-    margin: .3em;
+.title{
+    display: flex;
+    width: 100%;
+    margin: 3em;
 }
+/* Стиль для колонок */
 .info p {
-    white-space: nowrap;
+    width: 100%; /* Делаем каждую колонку 48% ширины, чтобы они не выходили за пределы */
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 14px;
+    font-size: 26px;
     color: var(--text-color-dark);
-    font-size: 1.1em;
-    border: 1px solid;
-    padding: .7em;
-    border-radius: 5px;
-    margin: 1em;
+    line-height: 1.4;
     opacity: 0;
     transform: scale(0.9);
     animation: fadeIn 0.6s ease-out forwards;
     animation-delay: 0.3s;
 }
 
-.info p strong {
-    font-weight: bolder; /* Выделяем метки */
+/* Для первой строки */
+.info .first-row p {
+    width: 100%; /* Первая строка занимает всю ширину */
 }
+
+/* Для второй строки, колонки по 50% */
+.info .second-row p {
+    width: 48%; /* Столбцы для второй строки */
+}
+
+/* Заголовок для списка информации */
+.list_info h2 {
+    font-size: 23px;
+    margin: .3em;
+}
+
 
 #anime-details .list_info p:first-child {
     text-align: center;
@@ -216,11 +242,93 @@ body.light-theme {
 }
 
 
+/* Стиль для контейнера вкладок */
+.tabs {
+    border-top: 2px solid #ddd;
+    display: flex;
+    justify-content: center;
+    margin: 7em 7em;
+    width: 100%;
+    align-items: center;
+    gap: 2em;
+    padding-top: 3em;
+}
+
+/* Кнопки вкладок */
+.tab-button {
+    padding: 10px 20px;
+    color: var(--text-color-dark);      
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 10px;
+    border-bottom: 3px solid;
+    transition: all 0.3s ease; /* Плавный переход */
+}
+
+/* Активная вкладка */
+.tab-button.active {
+    border-bottom:  3px solid orange;
+    color: white;
+    
+}   
+
+/* При наведении */
+.tab-button:hover {
+    
+    color: white;
+}
+
+/* Содержимое вкладки */
+.tab-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transition:  all .3s ease-in-out;
+   
+}
+/* Скрытие неактивных вкладок */
+.tab-pane {
+    display: none;
+    width: 100%;
+    opacity: 0;
+    transition:  all .3s ease-in-out;
+}
+
+/* Показывать только активную вкладку */
+.tab-pane.active {
+    display: block;
+    opacity: 1 ;
+    
+}
+
+/* Описание */
+.list_info {
+    width: 100%;
+    padding: 20px;
+    background-color: var(--secondary-bg-color-dark);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
 /* Персонажи */
 .characters {
     width: 100%;
-    margin-top: 20px;
+    height: 450px;
+    padding: 20px;
+    
+    background-color: var(--secondary-bg-color-dark);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .tabs {
+        flex-direction: column;
+    }
+}
+
 h3 {
     font-size: var(--font-size-lg);
     color: #fff;
@@ -232,20 +340,24 @@ h3 {
     display: flex;
     overflow: hidden;
     flex-wrap: wrap;
+    gap: 10px;
     width: 100%;
     max-width: 100%;
     align-items: center;
-    justify-content: start;
+    justify-content: space-evenly;
+    
 }
 
 .character{
     max-width: 100%;
+
 }
 .character img {
-    width: 200px;
+    width: 350px;
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
+
 }
 /* Адаптивность */
 @media (max-width: 768px) {
@@ -302,13 +414,29 @@ h3 {
     }
 }
 
-/* Поддержка больших экранов */
-@media (min-width: 1600px) {
-    #anime-details {
-        padding: 40px;
+/* Медиазапросы для адаптивности */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center; /* Переводим футер в колонку на мобильных устройствах */
+        gap: 20px;
     }
 
-    .poster {
-        max-width: 500px;
+    .footer-section {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 0; /* Убираем отступы на мобильных устройствах */
+    }
+
+    .footer-section h3 {
+        font-size: 18px; /* Уменьшаем размер заголовков на мобильных */
+    }
+
+    .footer-bottom {
+        font-size: 14px;
+    }
+
+    .footer {
+        padding: 40px 15px; /* Уменьшаем padding на мобильных устройствах */
     }
 }
