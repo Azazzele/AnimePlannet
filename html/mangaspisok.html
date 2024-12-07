@@ -13,112 +13,66 @@
     <link rel="icon" href="https://via.placeholder.com/16x16" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
     
     <link rel="stylesheet" href="../style/reset.css">
     <link rel="stylesheet" href="../style/main.css">
     
 </head>
 <body>
-         <div id="page_up" class="scroll-to-top">
+    <div id="page_up" class="scroll-to-top">
         ↑
     </div>
-    <!-- &Навигация -->
+    
     <nav class="navigate" aria-label="Основная навигация">
         <div class="logo" aria-label="Логотип Planetium">
             <img src="https://via.placeholder.com/150x50" alt="Planetium Logo">
         </div>
-        <ul role="menubar">
-            <li class="tab_navigate" role="none">
-                <a href="../index.html" class="link_navigate" id="home-link" aria-current="page" role="menuitem">
-                    <i class="fas fa-home" aria-hidden="true"></i> Главная
-                </a>
-            </li>
-            <li class="tab_navigate" role="none">
-                <a href="./anilist.html" class="link_navigate" id="anime-link" role="menuitem">
-                    <i class="fas fa-film" aria-hidden="true"></i> Аниме список
-                </a>
-            </li>
-            <li class="tab_navigate" role="none">
-                <a href="#" class="link_navigate" id="manga-link" role="menuitem">
-                    <i class="fas fa-book" aria-hidden="true"></i> Манга список
-                </a>
-            </li>
-            <li class="tab_navigate" role="none">
-                <a href="#" class="link_navigate" id="catalog-link" role="menuitem">
-                    <i class="fas fa-th-list" aria-hidden="true"></i> Каталог
-                </a>
-            </li>
-            <li class="tab_navigate" role="none">
-                <a href="#" class="link_navigate" id="forum-link" role="menuitem">
-                    <i class="fas fa-comments" aria-hidden="true"></i> Форум
-                </a>
-            </li>
-        </ul>
-
-        <!-- &Строка поиска -->
-        <div>
-            <form action="" method="get" class="search-container">
-                <input type="text" name="query" id="search" placeholder="Поиск..." class="search-input">
-                <button type="submit" class="search-btn" id="button_search"><i class="fas fa-search"></i></button>
-            </form>
-        </div>
-
-        <!-- &Профиль с иконкой -->
-        <div class="profile-container">
-            <a href="./html/error.html" class="profile-link" aria-label="Профиль">
-                <i class="fas fa-user-circle" aria-hidden="true"></i> 
-            </a>
+        
+        <div class="nav-links">
+            <div class="drop_menu" id="dropdown_menubar" aria-expanded="false">Каталог</div>
+            <ul class="drpdown_link" role="menubar" id="dropdown-menu">
+                <li class="tab_navigate" role="none">
+                    <a href="../index.html" class="link_navigate" id="home-link" aria-current="page" role="menuitem">
+                        <i class="fas fa-house-user" aria-hidden="true"></i> Главная
+                    </a>
+                </li>
+                <li class="tab_navigate" role="none">
+                    <a href="./anilist.html" class="link_navigate" id="anime-link" role="menuitem">
+                        <i class="fas fa-tv" aria-hidden="true"></i> Аниме список
+                    </a>
+                </li>
+                <li class="tab_navigate" role="none">
+                    <a href="#" class="link_navigate" id="manga-link" role="menuitem">
+                        <i class="fas fa-book-open" aria-hidden="true"></i> Манга список
+                    </a>
+                </li>
+                <li class="tab_navigate" role="none">
+                    <a href="#" class="link_navigate" id="catalog-link" role="menuitem">
+                        <i class="fas fa-list-ul" aria-hidden="true">Мой список</i>
+                    </a>
+                </li>
+                <li class="tab_navigate" role="none">
+                    <a href="#" class="link_navigate" id="forum-link" role="menuitem">
+                        <i class="fas fa-comment-dots" aria-hidden="true"></i> Форум
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 
-    <div id="list_manga_main"  class="list_anime_main"></div>
+    <div id="list_manga_main" class="list_anime_main"></div>
     <div id="paginationContainer"></div>
 
     <footer class="footer">
         <div class="footer-container">
-            <!-- &О компании -->
             <div class="footer-section">
                 <h3>О компании</h3>
                 <p>Planetium - ваше место для знакомства с миром аниме и манги. Присоединяйтесь к нашему сообществу!</p>
             </div>
-    
-            <!-- &Навигация -->
-            <div class="footer-section">
-                <h3>Навигация</h3>
-                <ul>
-                    <li><a href="#" id="home-link">Главная</a></li>
-                    <li><a href="#" id="anime-link">Аниме список</a></li>
-                    <li><a href="#" id="manga-link">Манга список</a></li>
-                    <li><a href="#" id="catalog-link">Каталог</a></li>
-                    <li><a href="#" id="forum-link">Форум</a></li>
-                </ul>
-            </div>
-    
-            <!-- &Социальные сети -->
-            <div class="footer-section">
-                <h3>Следите за нами</h3>
-                <ul class="social-links">
-                    <li><a href="#" class="social-link"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                    <li><a href="#" class="social-link"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    <li><a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    <li><a href="#" class="social-link"><i class="fab fa-youtube"></i> YouTube</a></li>
-                </ul>
-            </div>
-    
-            <!-- &Контактная информация -->
-            <div class="footer-section">
-                <h3>Контакты</h3>
-                <p>Email: <a href="mailto:contact@planetium.com">contact@planetium.com</a></p>
-                <p>Телефон: +1 (123) 456-7890</p>
-            </div>
         </div>
-    
-        <div class="footer-bottom">
-            <p>&copy; 2024 Planetium. Все права защищены.</p>
-        </div>
-    <script src="../script/mangalist.js"></script>
-    <script src="./script/search.js"></script>
-    <script src="../script/animelist.js" defer></script>
+    </footer>
+    <script  src="../script/animation_main.js" defer></script>
+    <script type="module" src="../script/mangalist.js"></script>
+    <script  src="./script/search.js"></script>
 </body>
 </html>

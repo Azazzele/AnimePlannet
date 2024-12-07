@@ -20,106 +20,97 @@
     <div id="page_up" class="scroll-to-top">
         ↑
     </div>
-    <!-- Навигация -->
-    <nav class="navigate" aria-label="Основная навигация">
-        <div class="logo" aria-label="Логотип Planetium">
-            <img src="https://via.placeholder.com/150x50" alt="Planetium Logo">
-            <ul role="menubar">
-                <li class="tab_navigate" role="none">
-                    <a href="#" class="link_navigate" id="home-link" aria-current="page" role="menuitem">
-                        <i class="fas fa-house-user" aria-hidden="true"></i> Главная
-                    </a>
-                </li>
-                <li class="tab_navigate" role="none">
-                    <a href="./html/anilist.html" class="link_navigate" id="anime-link" role="menuitem">
-                        <i class="fas fa-tv" aria-hidden="true"></i> Аниме список
-                    </a>
-                </li>
-                <li class="tab_navigate" role="none">
-                    <a href="./html/mangaspisok.html" class="link_navigate" id="manga-link" role="menuitem">
-                        <i class="fas fa-book-open" aria-hidden="true"></i> Манга список
-                    </a>
-                </li>
-                <li class="tab_navigate" role="none">
-                    <a href="#" class="link_navigate" id="catalog-link" role="menuitem">
-                        <i class="fas fa-list-ul" aria-hidden="true"></i> Каталог
-                    </a>
-                </li>
-                <li class="tab_navigate" role="none">
-                    <a href="#" class="link_navigate" id="forum-link" role="menuitem">
-                        <i class="fas fa-comment-dots" aria-hidden="true"></i> Форум
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="more">
-            <!-- Строка поиска -->
-            <div>
-                <form action="" method="get" class="search-container">
-                    <input type="text" name="query" id="search" placeholder="Поиск..." class="search-input">
-                    <button type="submit" class="search-btn" id="button_search">
-                        <i class="fas fa-search-plus" aria-hidden="true"></i>
-                    </button>
-                </form>
-            </div>
+<nav class="navigate" aria-label="Основная навигация">
+    <div class="logo" aria-label="Логотип Planetium">
+        <img src="https://via.placeholder.com/150x50" alt="Planetium Logo">
+    </div>
 
-            <!-- Профиль с иконкой -->
-            <div class="profile-container">
-                <a href="./html/error.html" class="profile-link" aria-label="Профиль">
-                    <i class="fas fa-user-alt" aria-hidden="true"></i> 
-                </a>
-            </div>
-        </div>
-    </nav>
+   <div class="nav-links">
+    <div class="drop_menu" id="dropdown_menubar" aria-expanded="false">Каталог <i class="fa fa-ellipsis-v"></i></div>
+    <ul class="drpdown_link" role="menubar" id="dropdown-menu">
+        <li class="tab_navigate" role="none">
+            <a href="#" class="link_navigate" id="home-link" aria-current="page" role="menuitem">
+                <i class="fas fa-house-user" aria-hidden="true"></i> Главная
+            </a>
+        </li>
+        <li class="tab_navigate" role="none">
+            <a href="./html/anilist.html" class="link_navigate" id="anime-link" role="menuitem">
+                <i class="fas fa-tv" aria-hidden="true"></i> Аниме список
+            </a>
+        </li>
+        <li class="tab_navigate" role="none">
+            <a href="./html/mangaspisok.html" class="link_navigate" id="manga-link" role="menuitem">
+                <i class="fas fa-book-open" aria-hidden="true"></i> Манга список
+            </a>
+        </li>
+        <li class="tab_navigate" role="none">
+            <a href="#" class="link_navigate" id="catalog-link" role="menuitem">
+                <i class="fas fa-list-ul" aria-hidden="true">Мой список</i> 
+            </a>
+        </li>
+        <li class="tab_navigate" role="none">
+            <a href="#" class="link_navigate" id="forum-link" role="menuitem">
+                <i class="fas fa-comment-dots" aria-hidden="true"></i> Форум
+            </a>
+        </li>
+    </ul>
+    
+    <!-- Строка поиска -->
+    <div class="search-container">
+        <form action="" method="get">
+            <input type="text" name="query" id="search" placeholder="Поиск..." class="search-input">
+            <button type="submit" class="search-btn" id="button_search">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </button>
+        </form>
+    </div>
 
-    <!-- Разделы с аниме -->
-    <div id="anime-list-new" class="list_anime_main">
+    <!-- Профиль с иконкой -->
+    <div class="profile-container">
+        <a href="./html/error.html" class="profile-link" aria-label="Профиль">
+            <i class="fas fa-user-alt" aria-hidden="true"></i> 
+        </a>
+    </div>
+</div>
+
+</nav>
+
+
+    <div class="list_anime_main">
         <div class="recomend_title">
             <h2>Осень 2024</h2>
+            <div class="wrapper_list_new" id="anime-list-new">
+            </div>
         </div>
     </div>
-    
-    <!-- Раздел для случайных аниме -->
-    <div id="anime-list" class="list_anime_main">
+    <div class="list_anime_main">
+        <div class="recomend_title">
+            <h2>День рождения только раз в году <i class="fas fa-birthday-cake"></i></h2>
+            <div class="wrapper_list_new" id="birthday-list">
+            </div>
+        </div>
+    </div>
+    <div class="list_anime_main">
         <div class="recomend_title">
             <h2>Тебе может понравится</h2>
+                <div class="wrapper_list_new" id="anime-list">
+            </div>
         </div>
+    </div>
+    <a class="recomend_title">
+        <h2 class="more_title">Найди свой жанр дял просмотра</h2>
+        <a href='' class="more"><span>Больше</span></a>
     </div>
 
-    <!-- Раздел для аниме с Днем Рождения -->
-    <div id="birthday-list" class="list_anime_main">
-        <div class="recomend_title">
-            <h2>Поздравляем с днем рождения <i class="fas fa-birthday-cake"></i></h2>
-        </div>
-    </div>
-    
-    <!-- Новый раздел: Популярные аниме -->
-    <div id="anime-list-popular" class="list_anime_main">
-        <div class="recomend_title">
-            <h2>Популярные аниме</h2>
-        </div>
-    </div>
+<div class="tabs">
+    <a href="" class="tab-button" data-tab="action"><span>Экшен</span></a>
+    <a href="" class="tab-button" data-tab="romance"><span>Романтика</span></a>
+    <a href="" class="tab-button" data-tab="horror"><span>Ужасы</span></a>
+</div>
 
-    <!-- Новый раздел: Топовые аниме -->
-    <div id="anime-list-top-rated" class="list_anime_main">
-        <div class="recomend_title">
-            <h2>Топовые аниме</h2>
-        </div>
-    </div>
-
-    <!-- Новый раздел: Экшен-аниме -->
-    <div id="anime-list-action" class="list_anime_main">
-        <div class="recomend_title">
-            <h2>Экшен-аниме</h2>
-        </div>
-    </div>
-
-    <!-- Новый раздел: Драма-аниме -->
-    <div id="anime-list-drama" class="list_anime_main">
-        <div class="recomend_title">
-            <h2>Драма-аниме</h2>
-        </div>
-    </div>
+<div id="schedule-container">
+    <!-- Расписание будет добавлено сюда -->
+</div>
 
     <footer class="footer">
         <div class="footer-container">
@@ -152,11 +143,7 @@
                 <p>Телефон: <i class="fas fa-phone-alt"></i> +1 (123) 456-7890</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Planetium. Все права защищены.</p>
-        </div>
     </footer>
-
     <script type="module" src="./script/API.js" defer></script>
     <script src="./script/Select_button_active.js" defer></script>
     <script src="./script/animation_main.js"></script>

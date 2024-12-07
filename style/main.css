@@ -25,7 +25,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font-family-main);
-    color: var(--link-color);
+    color: white
 }
 
 body {
@@ -33,166 +33,240 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: var(--main-bg-color);
+    background-color: #000;
     min-height: 100vh;
     font-family: var(--font-family-heading);
+    overflow-x: hidden;
 }
 
-/* Стиль навигации */
+/* Основной контейнер навигации */
 .navigate {
-    position: relative;
-    z-index: 1000;
-    top: 0;
-    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: var(--nav-bg-color) transparent;
-    box-shadow: 0 2px 8px var(--shadow);
-    transition: transform 0.4s ease;
+    padding: 10px 20px;
+    background-color: #070606;
+
 }
 
-.active_nav {
-    transform: translateY(-100%);
-}
-.more{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-/* Стиль для логотипа */
-.navigate .logo {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.navigate .logo img {
+/* Логотип */
+.logo img {
     max-width: 150px;
-    height: auto;
 }
 
-/* Стиль для строки поиска */
-.search-container {
+/* Контейнер с меню, строкой поиска и профилем */
+.nav-links {
     display: flex;
+    position: relative;
+    justify-content: space-around;
     align-items: center;
-    flex: 0 1 25%;
-    gap: 0.5rem;
     width: 100%;
-    margin-left: auto;
+    gap: 20px; /* Пространство между элементами */
 }
 
-.search-input {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 20px;
+/* Стили для списка меню */
+ul {
     display: none;
-    border: none;
-    background-color: var(--nav-bg-color);
-    color: var(--active-link-color);
-    width: 500px;
-    border: 1px solid var(--active-link-color);
-}
-
-.search-input:focus {
-    border-color: #5c1eec;
-}
-
-/* Стили для кнопки поиска */
-.search-btn {
-    padding: 0.5rem;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color .3s  ease-in;
-}
-
-.search-btn i {
-    font-size: 1.2rem;
-    
-}
-
-.search-btn:hover {
-    background-color: var(--link-hover-bg);
-}
-
-/* Стили для списка навигации */
-.navigate  ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    padding: 1rem;
-    margin: 0;
-    list-style-type: none;
-}
-
-/* Для каждого пункта навигации */
-.tab_navigate {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-/* Стиль для каждой ссылки */
+.tab_navigate {
+    margin-right: 20px;
+}
+
+/* Стили для ссылок меню */
 .link_navigate {
+    text-decoration: none;
+    color: #333;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem .8rem;
-    font-size: .8rem;
-    font-weight: 600;
-    color: var(--link-color);
-    text-decoration: none;
-    border-radius: 10px;
-    background-color: transparent;
-    transition: all 0.3s ease-in-out;
 }
 
 .link_navigate i {
-    font-size: 1rem;
-    transition: transform 0.3s ease-in-out;
+    margin-right: 5px;
 }
 
-/* Эффект при наведении */
-.link_navigate:hover {
-    background-color: var(--link-hover-bg);
-    color: var(--link-hover-color);
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px var(--hover-shadow);
-}
-
-/* Активная ссылка */
+/* Стиль для активной ссылки */
 .link_navigate.active {
-    background-color: var(--active-link-bg);
-    color: var(--active-link-color);
-    box-shadow: 0 4px 15px var(--hover-shadow);
-    transform: translateY(-5px);
+   
+    font-weight: bold;
 }
 
-.link_navigate.active i {
-    transform: scale(1.2);
+/* Строка поиска */
+.search-container {
+    width: 750px;
+    text-align: right;
+    border: 4px solid;
+    border-radius: 30px;
 }
+
+.search-input {
+    width: 90%;
+    padding: 8px;
+    font-size: 14px;
+    margin-right: 10px;
+    border-radius: 30px;
+    border: none;
+    padding: 1em;
+  
+}
+
+.search-btn {
+    padding: 8px 12px;
+
+    border-radius: 5px;
+}
+
+
+/* Общие стили для выпадающего меню */
+.drpdown_link li {
+    padding: 8px 16px;
+    border-bottom: 1px solid #333; /* Добавляем разделительную линию между пунктами */
+}
+
+.drpdown_link li:last-child {
+    border-bottom: none; /* Убираем линию у последнего элемента */
+}
+
+/* Плавный переход фона при наведении */
+.drpdown_link li a {
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    font-size: 16px;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Плавный переход фона и сдвига */
+}
+
+/* Эффект наведения */
+.drpdown_link li a:hover {
+    background-color: #555;
+    transform: scale(1.05); /* Легкий эффект увеличения */
+}
+
+/* Показываем меню при активном состоянии */
+.drop_menu:hover .drpdown_link {
+    display: block;
+}
+
+/* Скрытие меню с плавной анимацией */
+#dropdown-menu {
+    width: 75%;
+    height: auto;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    position: absolute;
+    left: 5%;
+    top: 100%;
+    transform: translateY(-20px);
+    background-color: rgba(0, 0, 0, .9);
+    border-radius: 8px;
+    z-index: 10;
+    box-shadow: 0 0px 40px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Плавный переход */
+}
+.drop_menu{
+    cursor: pointer;
+}
+/* Показ при наведении с анимацией */
+.drop_menu:hover #dropdown-menu {
+    opacity: 1;
+    transform: translateY(0); /* Возвращаем в нормальное положение */
+}
+
+/* Анимация для появления меню */
+@keyframes dropdown-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Анимация для скрытия меню */
+@keyframes dropdown-disappear {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+/* Когда меню теряет видимость, применяем анимацию скрытия */
+.drop_menu:not(:hover) #dropdown-menu {
+    animation: dropdown-disappear 0.3s ease-out forwards;
+}
+/* Показываем меню при активном состоянии с анимацией */
+#dropdown-menu.visible {
+    display: block;  /* Показываем меню */
+    animation: dropdown-appear 0.3s ease-out forwards; /* Применяем анимацию */
+}
+
+/* Мобильная адаптивность */
+@media screen and (max-width: 768px) {
+    #dropdown-menu {
+        width: 90%; /* Ширина меню для мобильных устройств */
+        left: 5%;
+        top: 10%; /* Немного выше на мобильных */
+    }
+    
+    .drpdown_link li {
+        padding: 10px 20px; /* Увеличиваем отступы для мобильных */
+    }
+
+    .drpdown_link li a {
+        font-size: 18px; /* Увеличиваем шрифт на мобильных */
+    }
+}
+
+
+.search-btn i {
+    font-size: 20px;
+}
+
+/* Профиль */
+.profile-container {
+    margin-left: 20px;
+}
+
+.profile-link i {
+    font-size: 18px;
+}
+
 .recomend_title {
     display: block;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align:right;
+    margin-top: 1.7em;
+    margin-bottom: 1.7em;
     width: 100%;
-    padding: 1rem 0; 
-    text-transform:capitalize; 
-    letter-spacing: 1px; 
+
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+.recomend_title  > h2{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align:center; 
+    text-transform:uppercase; 
+    letter-spacing: 1px; 
+    margin: 1em;
+}
 /* Стили для подменю навигации (если нужно) */
 .subnav {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-top: 20px;
-    background-color: #333333;
+    
     padding: 0.5rem 0;
     border-radius: 10px;
 }
@@ -211,39 +285,48 @@ body {
 
 /* Стили для изображений */
 img {
-    width: 360px;
-    height: auto;
-    max-width: 450px;
-    max-height: 450px;
-    object-fit: cover;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
     transition: transform 0.3s ease-in-out;
+    object-fit: cover;
 }
 
 /* Основной контейнер для аниме */
 .list_anime_main {
     max-height: 100%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    align-items: center;
     justify-content: center;
-    overflow: hidden;
-    margin-bottom: 10px;
+    text-align: start;
+    margin: .4em auto;
+    
 }
-
+.wrapper_list_new{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
 /* Стиль карточки аниме */
 .card_title {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s 
-    ease-in-out,border-bottom  .2s ease-in-out;
+    ease-in-out,border-bottom  .2s ease-in-out, color .4s ease-in-out;
     overflow: hidden;
     display: flex;
-    align-items: end;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     overflow: hidden;
-    height: 100%;
-    width: 100%;
-    margin: 10px;
-
+    width: 250px;
+        
+    max-height: 100%;
+    margin:  .6em;
+    border-bottom: 4px solid;
 }
 
 .wrapper{
@@ -253,58 +336,59 @@ img {
     width: 100%;
     margin: 0 auto;
 }
-#anime-list-new .card_title  a .poster{
-  margin: 1em;
-}
+
 /* Подъем карточки при наведении */
 .card_title:hover {
     transform: translateY(-10px);
     box-shadow: 0 6px 12px var(--hover-shadow);
+    border-bottom:  5px solid var(--link-hover-bg);
 }
 
 /* Стили для ссылок в карточке */
 .card_title a {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-decoration: none;
+    width: 100%; 
 }
-
 /* Стили для изображения */
 .poster {
     max-width: 100%;
     height: auto;
     margin-bottom: 15px;
-    border-radius: 10px;
 }
-
+.card_title:hover h2 {
+    color: var(--link-hover-bg);
+}
 /* Информация о аниме */
 .info {
-    width: 100%;
-    height: aut;
     font-family: var(--font-family-info);
     margin-top: 1rem;
     line-height: 1.1;
     font-size: 14px;
-    text-align: left;
     color: var(--text-light);
     height: 100%;
-    overflow: hidden; /* Скрываем переполняющий текст */
-    text-overflow: ellipsis; /* Добавляем многоточие в конце строки */
-
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1em;
 }
 .info h2{
-    justify-items: center;
     text-align: center;
-    gap: 20px   ;
-    flex:  0 0 100%;
-    margin: 1.1em;
+    width: 100%;
+    height: 100%;
+    text-transform: uppercase;
+    
+    -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  display: -webkit-box; /* Включаем флексбоксы */
+    -webkit-box-orient: vertical; /* Вертикальная ориентация */
+    -webkit-line-clamp: 2; /* Число отображаемых строк */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
 }
 .info p{
-    color: var(--link-hover-bg);
     text-align: center;
+}
+.info p:last-child{
+    padding: .5em;
+    color: var(--active-link-color);
 }
 /* Стили для кнопки "Прокрутить вверх" */
 .scroll-to-top {
@@ -539,114 +623,88 @@ img {
         padding: 80px 40px; /* Больше отступов для больших экранов */
     }
 }
-.list_anime_main{
-    padding: 1.15em;
-}
-
-.list_anime_main > .card_title{
-   width: 15% !important; 
-   align-items: start !important;
-   justify-content: start !important;
-}
-.btn{
-     background-color: transparent; /* Прозрачный фон */
-  color: #333; /* Темный цвет текста */
-  border: 2px solid #333; /* Тонкая рамка */
-  padding: 12px 24px; /* Внутренние отступы */
-  font-size: 16px; /* Размер шрифта */
-  font-weight: bold; /* Жирный шрифт */
-  text-transform: uppercase; /* Преобразуем текст в верхний регистр */
-  border-radius: 4px; /* Скругленные углы */
-  cursor: pointer; /* Курсор в виде указателя */
-  transition: all 0.3s ease; /* Плавный переход для всех изменений */
-  margin: 1em;
-}
-/* Эффекты при наведении */
-.btn:hover {
-  background-color: #333; /* Темный фон при наведении */
-  color: white; /* Белый текст */
-}
-
-/* Эффект при нажатии */
-.btn:active {
-  transform: scale(0.98); /* Немного уменьшаем кнопку при нажатии */
-}
-#list_manga_main,
-#list_anime_main{
-    margin: 0;
-}
-#list_anime_main  .poster img,
-#list_anime_main .poster img {
-    width: 100%;
-    height: 460px;
-    object-fit: cover;
-
-    margin-right: 15px;
-}
-#list_anime_main  > .card_title,
-#list_manga_main  > .card_title {
-    width: 100%;
-    height: 100%;
+.more_title{
+    padding: 1em;
     margin: 1em;
 }
-#list_anime_main  > .card_title:hover,
-#list_manga_main  .card_title:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+.btn{
+    padding: 1em;
+    margin: 1em;
+    border: 1px solid;
+    border-radius: 15px;
+}
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end; /* Выравнивание элементов по нижнему краю */
+    flex-wrap: wrap;
+    
 }
 
-.score{
+.tab-button {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Выровнять текст по низу кнопки */
     align-items: center;
-    justify-content: space-between;
-}
-/* Стили для карусели */
-.carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    overflow: hidden;
-}
-
-.carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-item {
-    min-width: 100%;
-    box-sizing: border-box;
-}
-
-.carousel-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
+    width: 550px;
+    height: 300px; /* Высота кнопок, настройте по своему */
     padding: 10px;
-    font-size: 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    background-size: cover;
+    margin: 1em;
+    transition:  .3s ease-in-out;
+    position: relative;
+}
+
+.tab-button span {
+    margin-top: auto; /* Вставить отступ сверху, чтобы текст оказался внизу */
+    position: relative;
+    z-index: 1000;
+}
+
+.tab-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный тёмный фон */
+    z-index: 0; /* Размещаем слой ниже текста */
+    transition: background 0.3s ease-in-out;
+}
+.tab-button:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1); /* Slightly brighten on hover */
+}
+
+.tab-button[data-tab="action"] {
+    background-image: url('https://cdn.magicdecor.in/com/2023/10/20180306/Dynamic-Action-Anime-Wallpaper-for-Wall.jpg');
+}
+
+.tab-button[data-tab="romance"] {
+    background-image: url('https://t4.ftcdn.net/jpg/07/87/06/43/360_F_787064350_kZLKtFRKGuki3u6TmvqRfuRzGwWcyA2u.jpg');
+}
+.tab-button[data-tab="horror"] {
+    background-image: url('https://img.freepik.com/premium-photo/creepy-scary-anime-girl-generative-ai_739548-16755.jpg');
+}
+
+.more {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin: 1em;
+}
+.more span {
+    margin: 1em;
+    padding: 0.5em;
+    border-radius: 5px;
     cursor: pointer;
-    z-index: 10;
+    transition: background-color 0.3s ease;
+    
 }
-
-.carousel-button.prev {
-    left: 10px;
-}
-
-.carousel-button.next {
-    right: 10px;
-}
-
-/* Стили для кнопок при наведении */
-.carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+.more span:hover {
+    background-color: rgba(255, 165, 0, 0.2); /* Hover effect */
 }
