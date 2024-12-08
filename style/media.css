@@ -1,0 +1,206 @@
+/* Медиазапросы для адаптивности */
+@media (max-width: 768px) {
+    /* Общие стили для экранов до 768px */
+    body {
+        font-size: 0.875rem; /* Уменьшаем размер шрифта */
+    }
+
+    .card {
+        width: 100%; /* Карточки занимают 100% ширины */
+        margin: 10px 0;
+    }
+
+    .login-form {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .input-group input,
+    .login-btn,
+    .social-btn {
+        font-size: 14px;
+    }
+
+    .footer-container,
+    .list_anime_main,
+    .navigate > ul,
+    .subnav {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .footer-section {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 0; /* Убираем отступы на мобильных */
+    }
+
+    .footer-section h3,
+    .link_navigate {
+        font-size: 18px;
+    }
+
+    .footer-bottom,
+    .subnav a {
+        font-size: 14px;
+    }
+
+    .footer-bottom p {
+        font-size: 12px;
+    }
+
+    .character-details,
+    .list_anime li {
+        width: 80%; /* Элементы занимают 80% на мобильных */
+        margin: 1em 0;
+    }
+
+    .title_name {
+        font-size: 20px;
+    }
+
+    /* Стили для мобильных меню */
+    #dropdown-menu {
+        width: 90%;
+        left: 5%;
+        top: 10%;
+    }
+
+    .drpdown_link li {
+        padding: 10px 20px;
+    }
+
+    .drpdown_link li a {
+        font-size: 18px;
+    }
+}
+
+/* Для экранов с шириной до 480px (мобильные устройства) */
+@media (max-width: 480px) {
+    .back-to-page {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    .poster_info img {
+        height: auto; /* Убираем фиксированную высоту изображений */
+    }
+
+    .icon-container {
+        gap: 10px;
+    }
+
+    .icon-link {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+
+    .footer {
+        padding: 30px 15px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+
+    .footer-section ul li {
+        font-size: 13px;
+    }
+
+    .social-links a {
+        font-size: 20px;
+    }
+
+    .footer-bottom p {
+        font-size: 12px;
+    }
+}
+
+/* Для экранов от 1024px до 1200px */
+@media (min-width: 1024px) and (max-width: 1200px) {
+    .character-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .poster_info {
+        width: 100%;
+        margin: 1em 0;
+    }
+
+    .info_charcter {
+        width: 100%;
+        flex: 0 0 100%;
+        margin: 1.5em 0;
+    }
+
+    .list_anime li {
+        width: 45%;
+        margin: 10px 0;
+    }
+
+    .title_name {
+        font-size: 22px;
+    }
+}
+
+/* Для экранов от 768px до 1024px (планшеты) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .character-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .poster_info {
+        width: 100%;
+        margin: 1em 0;
+    }
+
+    .info_charcter {
+        width: 100%;
+        flex: 0 0 100%;
+        margin: 1.5em 0;
+    }
+
+    .list_anime li {
+        width: 45%;
+        margin: 10px 0;
+    }
+
+    .title_name {
+        font-size: 22px;
+    }
+}
+
+/* Для экранов больше 1300px */
+@media (min-width: 1300px) {
+    .character-details {
+        justify-content: space-around;
+    }
+
+    .poster_info {
+        flex: 0 1 20%;
+    }
+
+    .info_charcter {
+        margin: 0;
+    }
+
+    .list_anime li {
+        width: 48%;
+    }
+
+    .footer-container {
+        max-width: 1200px; /* Фиксированная ширина футера */
+    }
+
+    .footer {
+        padding: 80px 40px; /* Больше отступов для больших экранов */
+    }
+}

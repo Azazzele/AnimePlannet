@@ -1,32 +1,3 @@
-/* Определение CSS переменных */
-:root {
-    --main-bg-color: #0c0c0c;
-    --nav-bg-color: #222222;
-    --link-color: #d3d3d3;
-    --link-hover-bg: #ff5e01;
-    --link-hover-color: #ffffff;
-    --active-link-bg: #0e062057;
-    --active-link-color: #ffffff;
-    --text-light: #ccc;
-    --text-dark: #bbb;
-    --card-bg: linear-gradient(135deg, rgba(37, 37, 37, 0.8), rgba(0, 0, 0, 0.8));
-    --shadow: rgba(0, 0, 0, 0.3);
-    --hover-shadow: rgba(0, 0, 0, 0.4);
-    --font-family-main: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
-    --font-family-heading: 'Coming Soon', cursive;
-    --font-family-info: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    --card-width: 240px;
-    --card-gap: 30px;
-}
-
-/* Общие стили */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-family-main);
-    color: white
-}
 
 body {
     display: flex;
@@ -180,29 +151,6 @@ ul {
     transform: translateY(0); /* Возвращаем в нормальное положение */
 }
 
-/* Анимация для появления меню */
-@keyframes dropdown-appear {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Анимация для скрытия меню */
-@keyframes dropdown-disappear {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-}
 /* Когда меню теряет видимость, применяем анимацию скрытия */
 .drop_menu:not(:hover) #dropdown-menu {
     animation: dropdown-disappear 0.3s ease-out forwards;
@@ -213,22 +161,6 @@ ul {
     animation: dropdown-appear 0.3s ease-out forwards; /* Применяем анимацию */
 }
 
-/* Мобильная адаптивность */
-@media screen and (max-width: 768px) {
-    #dropdown-menu {
-        width: 90%; /* Ширина меню для мобильных устройств */
-        left: 5%;
-        top: 10%; /* Немного выше на мобильных */
-    }
-    
-    .drpdown_link li {
-        padding: 10px 20px; /* Увеличиваем отступы для мобильных */
-    }
-
-    .drpdown_link li a {
-        font-size: 18px; /* Увеличиваем шрифт на мобильных */
-    }
-}
 
 
 .search-btn i {
@@ -421,37 +353,7 @@ img {
     background-color: #0056b3;
 }
 
-/* Адаптивность для маленьких экранов */
-@media (max-width: 768px) {
-    .list_anime_main {
-        flex-direction: column;
-        align-items: center;
-    }
 
-    .card_title {
-        width: 90%;
-    }
-
-    .navigate > ul {
-        flex-direction: column;
-    }
-
-    .link_navigate {
-        font-size: 1.2rem;
-        padding: 0.8rem 1rem;
-    }
-
-    .subnav {
-        flex-direction: column;
-    }
-
-    .subnav a {
-        padding: 1rem;
-    }
-    .recomend_title {
-        font-size: 1.5rem; /* Меньший шрифт на мобильных устройствах */
-    }
-}
 /* Общие стили для футера */
 .footer {
     background-color: #1a1a1a; /* Темный фон для футера */
@@ -563,66 +465,8 @@ img {
     padding-left: 30px;
 }
 
-/* Медиазапросы для адаптивности */
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-        align-items: center; /* Переводим футер в колонку на мобильных устройствах */
-        gap: 20px;
-    }
 
-    .footer-section {
-        min-width: 100%;
-        max-width: 100%;
-        padding: 0; /* Убираем отступы на мобильных устройствах */
-    }
 
-    .footer-section h3 {
-        font-size: 18px; /* Уменьшаем размер заголовков на мобильных */
-    }
-
-    .footer-bottom {
-        font-size: 14px;
-    }
-
-    .footer {
-        padding: 40px 15px; /* Уменьшаем padding на мобильных устройствах */
-    }
-}
-
-/* Стили для маленьких экранов */
-@media (max-width: 480px) {
-    .footer {
-        padding: 30px 15px; /* Меньше отступов для маленьких экранов */
-    }
-
-    .footer-section h3 {
-        font-size: 16px; /* Еще меньше размер заголовков для маленьких экранов */
-    }
-
-    .footer-section ul li {
-        font-size: 13px; /* Меньше шрифт для мобильных */
-    }
-
-    .social-links a {
-        font-size: 20px; /* Уменьшаем размер иконок для маленьких экранов */
-    }
-
-    .footer-bottom p {
-        font-size: 12px; /* Меньший шрифт для нижней части футера */
-    }
-}
-
-/* Стили для большого экрана */
-@media (min-width: 1200px) {
-    .footer-container {
-        max-width: 1200px; /* Фиксированная ширина контейнера футера на больших экранах */
-    }
-
-    .footer {
-        padding: 80px 40px; /* Больше отступов для больших экранов */
-    }
-}
 .more_title{
     padding: 1em;
     margin: 1em;
@@ -637,31 +481,31 @@ img {
 .tabs {
     display: flex;
     justify-content: space-around;
-    align-items: flex-end; /* Выравнивание элементов по нижнему краю */
+    align-items: flex-end;
     flex-wrap: wrap;
-    
 }
 
 .tab-button {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Выровнять текст по низу кнопки */
+    justify-content: flex-end;
     align-items: center;
     width: 550px;
-    height: 300px; /* Высота кнопок, настройте по своему */
+    height: 300px;
     padding: 10px;
     text-decoration: none;
     border-radius: 8px;
     background-size: cover;
     margin: 1em;
-    transition:  .3s ease-in-out;
     position: relative;
+    transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease; /* Плавные переходы */
 }
 
 .tab-button span {
-    margin-top: auto; /* Вставить отступ сверху, чтобы текст оказался внизу */
+    margin-top: auto;
     position: relative;
     z-index: 1000;
+    transition: color 0.3s ease; /* Плавный переход для текста */
 }
 
 .tab-button::before {
@@ -671,13 +515,21 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный тёмный фон */
-    z-index: 0; /* Размещаем слой ниже текста */
-    transition: background 0.3s ease-in-out;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    transition: background 0.3s ease; /* Плавный переход для затемнения */
 }
+
+/* Эффект на hover */
 .tab-button:hover {
-    transform: scale(1.1);
-    filter: brightness(1.1); /* Slightly brighten on hover */
+    transform: scale(1.1); /* Увеличение кнопки */
+    filter: brightness(1.2); /* Яркость */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Добавление тени */
+}
+
+/* При наведении на вкладку изменяется цвет текста */
+.tab-button:hover span {
+    color: #fff; /* Текст становится белым на hover */
 }
 
 .tab-button[data-tab="action"] {
@@ -687,8 +539,56 @@ img {
 .tab-button[data-tab="romance"] {
     background-image: url('https://t4.ftcdn.net/jpg/07/87/06/43/360_F_787064350_kZLKtFRKGuki3u6TmvqRfuRzGwWcyA2u.jpg');
 }
+
 .tab-button[data-tab="horror"] {
     background-image: url('https://img.freepik.com/premium-photo/creepy-scary-anime-girl-generative-ai_739548-16755.jpg');
+}
+
+/* Плавное появление текста на вкладке */
+.tab-button[data-tab="action"] span {
+    animation: fadeInAction 1s ease-out forwards;
+}
+
+.tab-button[data-tab="romance"] span {
+    animation: fadeInRomance 1s ease-out forwards;
+}
+
+.tab-button[data-tab="horror"] span {
+    animation: fadeInHorror 1s ease-out forwards;
+}
+
+/* Ключевые кадры для анимации текста */
+@keyframes fadeInAction {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRomance {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInHorror {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .more {
@@ -707,4 +607,28 @@ img {
 }
 .more span:hover {
     background-color: rgba(255, 165, 0, 0.2); /* Hover effect */
+}
+
+/* Анимация для появления меню */
+@keyframes dropdown-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Анимация для скрытия меню */
+@keyframes dropdown-disappear {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 }

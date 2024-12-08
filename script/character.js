@@ -79,36 +79,35 @@ if (!characterId || !characterName) {
 
   function handleData(data) {
     const character = data.data.Character;
-    const gender = character.gender || 'Неизвестно';  // Пол
+    const gender = getGenderInRussian(character.gender); 
     const imageUrl = character.image ? character.image.large : 'https://via.placeholder.com/150?text=No+Image';
     const birthDate = character.dateOfBirth || {};
     const description = character.description || 'Описание не доступно';
-
     // Проверяем и выводим дату рождения
     const birthDateString = getBirthDateString(birthDate);
-
     // Проверка на день рождения персонажа
     const birthdayIcon = checkBirthday(birthDate);
 
-    // Обработка медиа-сериалов
+
     const mediaItems = character.media.edges.length > 0 ? character.media.edges.map(edge => {
-      const format = edge.node.format || 'Неизвестно';
-      const title = edge.node.title.romaji || 'Неизвестно';
-      const coverImage = edge.node.coverImage.extraLarge || 'https://via.placeholder.com/150?text=No+Image';
+  const format = getFormat(edge.node.format);
+  const title = edge.node.title.romaji || 'Неизвестно';
+  const coverImage = edge.node.coverImage.extraLarge || 'https://via.placeholder.com/150?text=No+Image';
 
-      return `
-        <li>
-          <a href="../page.html?name=${encodeURIComponent(title)}&animeId=${edge.node.id}" class="character-link">
-            <img src="${coverImage}" alt="${title}" style="max-width: 100px; height: auto;">
-            <div class="title_name">
-              <div class="details"> <span>${title}</span></div>
-              <div class="details"> <span>${format}</span></div>
-            </div>
-          </a> 
-        </li>
-      `;
-    }).join('') : '<li>Нет медиа-сериалов</li>';
-
+  return `
+    <li class="${format.class}">
+      <a href="../page.html?name=${encodeURIComponent(title)}&animeId=${edge.node.id}" class="character-link">
+        <img src="${coverImage}" alt="${title}" style="max-width: 100px; height: auto;">
+        <div class="title_name">
+          <div class="details"> <span>${title}</span></div>
+          <div class="details"> <span>${format.label}</span></div>
+        </div>
+      </a> 
+    </li>
+  `;
+}).join('') : '<li>Нет медиа-сериалов</li>';
+  const collectionsCount = character.collections ? character.collections.length : 0;
+  const listsCount = character.lists ? character.lists.length : 0;
   // Обработка актеров озвучки
   const voiceActors = character.voiceActors && character.voiceActors.length > 0 ? character.voiceActors.map(actor => {
     const actorName = actor.name.full || 'Неизвестно';
@@ -148,22 +147,28 @@ if (!characterId || !characterName) {
             <i class="fa fa-bolt"></i>
             <span class="icon-text">Сделать фаворитом</span> <!-- Текст, который будет показываться при наведении -->
           </a>
+          <a href="#" class="icon-link" title="Редактировать" onclick="editCharacter()"><i class="fa fa-edit"></i>
+          <span class="icon-text">Редактировать</span>
+          </a>
         </div>
 
           
           <aside class="aside">
             <div class="collection_name">
-                <h2>В Коллекциях<span class="" id="countCollection">1000</span></h2>
-                <h2>В списка у <span class="" id="countCollection">1000</span></h2>
+                <h2>В Коллекциях <span id="countCollection">${collectionsCount}</span></h2>
+                <h2>В списках у <span id="countLists">${listsCount}</span></h2>
             </div>
           </aside>    
         </div>
         
         <div class="info_charcter">
           <p>${description}</p>
-          <h3>Дата рождения: ${birthDateString}</h3>
-          <h3>Пол: ${gender}</h3>
+          <div class="other_info">
+            <h3>Дата рождения: ${birthDateString}</h3>
+            <h3>Пол: ${gender}</h3>
+          </div>
         </div>
+        
         <div class="dnime_charcters">
           <ul class='list_anime'>
             ${mediaItems}
@@ -181,7 +186,17 @@ if (!characterId || !characterName) {
     ];
     return months[monthNumber - 1] || 'Неизвестно'; // monthNumber начинается с 1
   }
-
+// Функция для получения пола на русском
+  function getGenderInRussian(gender) {
+    switch (gender) {
+      case 'MALE':
+        return 'Мужской';
+      case 'FEMALE':
+        return 'Женский';
+      default:
+        return 'Неизвестно';
+    }
+  }
   // Функция для получения строки даты рождения
   function getBirthDateString(birthDate) {
     const day = birthDate.day != null ? birthDate.day : 'Неизвестно';
@@ -205,9 +220,65 @@ if (!characterId || !characterName) {
     }
     return ''; // Возвращаем пустую строку, если сегодня не день рождения
   }
+  function getFormat(format) {
+  switch (format) {
+    case 'MANGA':
+      return { label: 'Манга', class: 'format-manga' };
+    case 'NOVELE':
+      return { label: 'Ранобэ', class: 'format-novele' };
+    case 'TV':
+      return { label: 'Тв сериал', class: 'format-tv' };
+    case 'MOVIE':
+      return { label: 'Фильм', class: 'format-movie' };
+    case 'OVA':
+      return { label: 'OVA', class: 'format-ova' };
+    case 'ONA':
+      return { label: 'ONA', class: 'format-ona' };
+    case 'SPECIAL':
+      return { label: 'Тв спешиал', class: 'format-special' };
+    default:
+      return { label: 'Неизвестно', class: 'format-unknown' };
+  }
+}
 
-  function handleError(error) {
-    console.error('Ошибка при получении данных:', error);
-    characterDetailsContainer.innerHTML = '<p>Ошибка при загрузке данных. Попробуйте позже.</p>';
+}
+ function handleError(error) {
+  console.error('Ошибка при получении данных:', error);
+  characterDetailsContainer.innerHTML = `
+    <p>Произошла ошибка при загрузке данных.</p>
+    <p>Попробуйте позже.</p>
+  `;
+}
+function addToCollection() {
+  alert('Персонаж добавлен в коллекцию!');
+}
+
+function shareCharacter() {
+  const url = window.location.href;
+  if (navigator.share) {
+    navigator.share({
+      title: characterName,
+      url: url
+    })
+    .then(() => console.log('Успешно поделились!'))
+    .catch((error) => console.error('Ошибка при попытке поделиться:', error));
+  } else {
+    alert('Ваш браузер не поддерживает функцию обмена. Скопируйте ссылку: ' + url);
+  }
+}
+
+function makeFavorite() {
+  alert('Персонаж добавлен в избранное!');
+}
+
+// Новая функция для редактирования персонажа
+function editCharacter() {
+  const newName = prompt('Введите новое имя персонажа:', characterName);
+  if (newName !== null && newName.trim() !== '') {
+    // Если имя изменено, обновляем его
+    characterDetailsContainer.querySelector('h3').textContent = newName;
+    alert('Имя персонажа обновлено на: ' + newName);
+  } else {
+    alert('Имя не было изменено.');
   }
 }

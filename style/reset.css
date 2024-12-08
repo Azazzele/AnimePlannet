@@ -1,76 +1,108 @@
-/* Reset and base styles  */
-* {
-	padding: 0px;
-	margin: 0px;
+@import './media.css';
+/* Общие переменные */
+:root {
+    /* Темная тема */
+    --primary-bg-color-dark: #07060a;
+    --secondary-bg-color-dark: #0c0b0b;
+    --accent-color-dark: #3498db;
+    --text-color-dark: rgb(199, 202, 204);
+    --main-bg-color: #0c0c0c;
+    --nav-bg-color: #222222;
+    --link-color: #d3d3d3;
+    --link-hover-bg: #ff5e01;
+    --link-hover-color: #ffffff;
+    --active-link-bg: #0e062057;
+    --active-link-color: #ffffff;
+    --text-light: #ccc;
+    --text-dark: #bbb;
+    --card-bg: linear-gradient(135deg, rgba(37, 37, 37, 0.8), rgba(0, 0, 0, 0.8));
+    --shadow: rgba(0, 0, 0, 0.3);
+    --hover-shadow: rgba(0, 0, 0, 0.4);
+    --font-family-main: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
+    --font-family-heading: 'Coming Soon', cursive;
+    --font-family-info: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    --font-size-base: 1rem; /* Используем rem для базового размера */
+    --font-size-lg: 2.5rem;
+    --font-size-sm: 0.9rem;
+    --border-radius: 10px;
+    --max-width: 1340px;
+    --poster-width: 500px;
+    --character-max-width: 120px;
+    --gap: 20px;
+    --card-width: 240px;
+    --card-gap: 30px;
+    --primary-icon-color: rgb(6, 252, 59);
+    --light-red: #ff4444;
+    --green-icon: #11ff19;
+    --yellow-icon: #FFEB3B;
 }
 
+/* Сброс стилей */
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
-html{
-	line-height: 1.15;
-	-webkit-text-size-adjust: 100%;
-}
-/* Links */
 
-a, a:link, a:visited  {
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Общие стили для ссылок */
+a, a:link, a:visited {
     text-decoration: none;
+    color: var(--link-color);
+    transition: color 0.3s ease-in-out; /* Плавный переход для цвета */
 }
 
-a:hover  {
-    text-decoration: none;
-}
 
-/* Common */
 
+/* Базовые стили для блоков */
 aside, nav, footer, header, section, main {
-	display: block;
+    display: block;
 }
 
 h1, h2, h3, h4, h5, h6, p {
     font-size: inherit;
-	font-weight: inherit;
+    font-weight: inherit;
 }
 
 ul, ul li {
-	list-style: none;
+    list-style: none;
 }
 
 img {
-	vertical-align: center;
-}
-
-img, svg {
-	max-width: 100%;
-	height: auto;
+    vertical-align: center;
+    max-width: 100%;
+    height: auto;
 }
 
 address {
-  font-style: normal;
+    font-style: normal;
 }
 
-/* Form */
-
+/* Стили для форм */
 input, textarea, button, select {
-	font-family: inherit;
+    font-family: inherit;
     font-size: inherit;
     color: inherit;
     background-color: transparent;
 }
 
 input::-ms-clear {
-	display: none;
+    display: none;
 }
 
 button, input[type="submit"] {
     display: inline-block;
     box-shadow: none;
     background-color: transparent;
-    background: none;
     cursor: pointer;
-	border: none;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
 }
 
 input:focus, input:active,
@@ -79,14 +111,70 @@ button:focus, button:active {
 }
 
 button::-moz-focus-inner {
-	padding: 0;
-	border: 0;
+    padding: 0;
+    border: 0;
 }
 
 label {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 legend {
-	display: block;
+    display: block;
+}
+
+/* Применение переменных для тела страницы */
+body {
+    background-color: var(--primary-bg-color-dark);
+    color: var(--text-color-dark);
+    font-family: var(--font-family-main);
+    font-size: var(--font-size-base);
+    margin: 0;
+    padding: 0;
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: var(--gap);
+}
+
+/* Карточки */
+.card {
+    width: var(--card-width);
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease-in-out;
+    padding: 20px;
+    margin: var(--card-gap);
+}
+
+.card:hover {
+    box-shadow: var(--hover-shadow);
+}
+
+/* Навигация */
+nav {
+    background-color: var(--nav-bg-color);
+    padding: 10px;
+}
+
+nav a {
+    color: var(--link-color);
+    padding: 10px;
+    display: inline-block;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+
+/* Дополнительные стили для кнопок */
+button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Эффекты для изображений */
+img:hover {
+    transform: scale(1.05); /* Эффект увеличения при наведении */
+    transition: transform 0.3s ease-in-out;
 }

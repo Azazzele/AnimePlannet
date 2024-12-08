@@ -242,7 +242,9 @@ function handleData(data) {
       <button class="tab-button active" data-tab="description"><i class="fas fa-info-circle"></i> Описание</button>
       <button class="tab-button" data-tab="characters"><i class="fas fa-users"></i> Персонажи</button>
       <button class="tab-button" data-tab="staff"><i class="fas fa-chalkboard-teacher"></i> Сотрудники</button>
+      <button class="tab-button" data-tab="collection"><i class="fas fa-box"></i> Коллекция</button>
       <button class="tab-button" data-tab="reviews"><i class="fas fa-comments"></i> Отзывы</button>
+      <button class="tab-button" data-tab="comments"><i class="fas fa-comments"></i> Коментарии</button>
     </div>
     <div class="tab-content">
       <div class="tab-pane active" id="description">
@@ -267,14 +269,30 @@ function handleData(data) {
           </div>
         </div>
       </div>
+      <div class="tab-pane" id="collection"> 
+        <div class="collection">
+          <h3>Коллекции:</h3>
+          <p>Коллекция для этого аниме еще не добавлена.</p>  <!-- Здесь можно добавить логику для отображения информации о коллекции -->
+        </div>
+      </div>
       <div class="tab-pane" id="reviews"> 
         <div class="reviews">
           <h3>Отзывы:</h3>
           <div class="review-list">
             <p>Отзывы не доступны.</p> 
           </div>
+      <div class="tab-pane" id="comments">    
+        <div class="comment-section">
+          <div class="review-list">
+            <p>Не доступны.</p> 
+          </div>
+          <h4>Оставить комментарий:</h4>
+          <textarea id="commentInput" placeholder="Напишите ваш комментарий здесь..." rows="4"></textarea>
+          <button id="submitComment" class="btn-submit">Отправить</button>
         </div>
       </div>
+      </div>
+      </div>   
     </div>
   `;
 

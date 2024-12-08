@@ -1,27 +1,8 @@
-:root {
-    --primary-bg-color-dark: #07060a;
-    --secondary-bg-color-dark: #0c0b0b;
-    --text-color-dark: rgb(199, 202, 204);
-    
-    --font-size-base: 16px;
-    --font-family: 'Arial', sans-serif;
-    --font-size-lg: 2.5rem;
-    --font-size-sm: 0.9rem;
-    --border-radius: 10px;
-    --max-width: 1340px;
-    --poster-width: 500px;
-    --character-max-width: 120px;
-    --gap: 20px;
-    --accent-color-dark: #1c1c1c;
-    --button-hover-color: #3b3b3b;
-    --primary-icon-color: rgb(6, 252, 59);
-    --light-red: #ff4444;
-    --green-icon: #11ff19;
-    --yellow-icon: #FFEB3B;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 
 body {
-    font-family: var(--font-family);
+    font-family: 'Roboto'; 
     margin: 0;
     padding: 0;
     width: 100%;
@@ -33,6 +14,7 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
 }
+
 
 .back-to-page {
     text-decoration: none;
@@ -92,11 +74,14 @@ body {
     align-items: flex-start;
     justify-content: start;
 }
-
+.other_info{
+    text-align: left;
+}
 .dnime_charcters {
     display: flex;
-    flex-direction: row;
+    justify-content: start;
     margin-top: 10em;
+    flex:  0 1 100%;
 }
 
 .list_anime {
@@ -104,7 +89,7 @@ body {
     align-items: baseline;
     justify-content: start;
     gap: 10px;
-    width: 80%;
+    width: 100%;
     margin: auto;
     flex-wrap: wrap;
     height: 100%;
@@ -116,7 +101,7 @@ body {
     display: flex;
     align-items: start;  
     margin: 5px;
-    width: 390px;
+    width: 350px;
     height: auto;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -161,7 +146,7 @@ body {
 
 h3 {
     font-style: italic;
-    font-size: 25px;
+    font-size: 19px;
 }
 
 .details {
@@ -265,108 +250,3 @@ h3 {
   color: var(--yellow-icon);
 }
 
-/* Адаптивный дизайн для экранов более 1300px */
-@media (max-width: 1300px) {
-    .character-details {
-        justify-content: space-around;
-    }
-
-    .poster_info {
-        flex: 0 1 20%;
-    }
-
-    .info_charcter {
-        margin: 0;
-    }
-
-    .list_anime li {
-        width: 48%;
-    }
-}
-
-/* Адаптивный дизайн для планшетов */
-@media (max-width: 1024px) {
-    .character-details {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .poster_info {
-        width: 100%;
-        margin: 1em 0;
-    }
-
-    .info_charcter {
-        width: 100%;
-        flex: 0 0 100%;
-        margin: 1.5em 0;
-    }
-
-    .list_anime li {
-        width: 45%;
-        margin: 10px 0;
-    }
-
-    .title_name {
-        font-size: 22px;
-    }
-}
-
-/* Адаптивный дизайн для мобильных устройств */
-@media (max-width: 768px) {
-    .character-details {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .poster_info {
-        width: 100%;
-        margin: 1em 0;
-    }
-
-    .info_charcter {
-        width: 100%;
-        flex: 0 0 100%;
-        margin: 1.5em 0;
-    }
-
-    .list_anime {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .list_anime li {
-        width: 80%;
-        margin: 1em 0;
-    }
-
-    .title_name {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .back-to-page {
-        font-size: 16px;
-        padding: 8px 12px;
-        top: 5px;
-    }
-
-    .poster_info img {
-        height: auto;
-    }
-
-    .list_anime li {
-        width: 90%;
-    }
-
-    .icon-container {
-        gap: 10px;
-    }
-
-    .icon-link {
-        width: 35px;
-        height: 35px;
-        font-size: 18px;
-    }
-}
