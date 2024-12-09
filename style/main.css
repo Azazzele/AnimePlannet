@@ -62,7 +62,6 @@ ul {
 
 /* Стиль для активной ссылки */
 .link_navigate.active {
-   
     font-weight: bold;
 }
 
@@ -70,7 +69,7 @@ ul {
 .search-container {
     width: 750px;
     text-align: right;
-    border: 4px solid;
+    border: 1px solid;
     border-radius: 30px;
 }
 
@@ -82,26 +81,20 @@ ul {
     border-radius: 30px;
     border: none;
     padding: 1em;
-  
 }
-
 .search-btn {
     padding: 8px 12px;
 
     border-radius: 5px;
 }
-
-
 /* Общие стили для выпадающего меню */
 .drpdown_link li {
     padding: 8px 16px;
     border-bottom: 1px solid #333; /* Добавляем разделительную линию между пунктами */
 }
-
 .drpdown_link li:last-child {
     border-bottom: none; /* Убираем линию у последнего элемента */
 }
-
 /* Плавный переход фона при наведении */
 .drpdown_link li a {
     text-decoration: none;
@@ -111,18 +104,15 @@ ul {
     padding: 8px 12px;
     transition: background-color 0.3s ease, transform 0.3s ease; /* Плавный переход фона и сдвига */
 }
-
 /* Эффект наведения */
 .drpdown_link li a:hover {
     background-color: #555;
     transform: scale(1.05); /* Легкий эффект увеличения */
 }
-
 /* Показываем меню при активном состоянии */
 .drop_menu:hover .drpdown_link {
     display: block;
 }
-
 /* Скрытие меню с плавной анимацией */
 #dropdown-menu {
     width: 75%;
@@ -150,7 +140,6 @@ ul {
     opacity: 1;
     transform: translateY(0); /* Возвращаем в нормальное положение */
 }
-
 /* Когда меню теряет видимость, применяем анимацию скрытия */
 .drop_menu:not(:hover) #dropdown-menu {
     animation: dropdown-disappear 0.3s ease-out forwards;
@@ -160,22 +149,16 @@ ul {
     display: block;  /* Показываем меню */
     animation: dropdown-appear 0.3s ease-out forwards; /* Применяем анимацию */
 }
-
-
-
 .search-btn i {
     font-size: 20px;
 }
-
 /* Профиль */
 .profile-container {
     margin-left: 20px;
 }
-
 .profile-link i {
     font-size: 18px;
 }
-
 .recomend_title {
     display: block;
     margin-top: 1.7em;
@@ -202,7 +185,6 @@ ul {
     padding: 0.5rem 0;
     border-radius: 10px;
 }
-
 .subnav a {
     padding: 0.8rem 1.2rem;
     color: #fff;
@@ -214,7 +196,6 @@ ul {
     background-color: var(--highlight-bg);
     transform: scale(1.05);
 }
-
 /* Стили для изображений */
 img {
     width: 100%;
@@ -224,7 +205,6 @@ img {
     transition: transform 0.3s ease-in-out;
     object-fit: cover;
 }
-
 /* Основной контейнер для аниме */
 .list_anime_main {
     max-height: 100%;
@@ -260,7 +240,6 @@ img {
     margin:  .6em;
     border-bottom: 4px solid;
 }
-
 .wrapper{
     width: 100%;
 }
@@ -268,14 +247,12 @@ img {
     width: 100%;
     margin: 0 auto;
 }
-
 /* Подъем карточки при наведении */
 .card_title:hover {
     transform: translateY(-10px);
     box-shadow: 0 6px 12px var(--hover-shadow);
     border-bottom:  5px solid var(--link-hover-bg);
 }
-
 /* Стили для ссылок в карточке */
 .card_title a {
     width: 100%; 
@@ -343,17 +320,13 @@ img {
     cursor: pointer;
     z-index: 1000;
 }
-
 .scroll-to-top.show {
     opacity: 1;
     pointer-events: auto;
-}   
-
+}
 .scroll-to-top:hover {
     background-color: #0056b3;
 }
-
-
 /* Общие стили для футера */
 .footer {
     background-color: #1a1a1a; /* Темный фон для футера */
@@ -366,11 +339,9 @@ img {
     width: 100%;
     transition: background-color 0.3s ease; /* Плавный переход для фона футера */
 }
-
 .footer:hover {
     background-color: #111; /* Темный фон при наведении */
 }
-
 /* Контейнер футера */
 .footer-container {
     display: flex;
@@ -380,13 +351,11 @@ img {
     max-width: 1200px; /* Максимальная ширина футера для больших экранов */
     margin: 0 auto; /* Центрирование футера */
 }
-
 /* Секции футера */
 .footer-section {
     flex: 1;
     max-width: 350px;
 }
-
 .footer-section h3 {
     font-size: 20px; 
     margin-bottom: 20px;
@@ -395,53 +364,44 @@ img {
     color: #f5f5f5;
     text-transform: uppercase; /* Добавление верхнего регистра для заголовков */
 }
-
 /* Стили для списков */
 .footer-section ul {
     list-style: none;
     padding: 0;
 }
-
 .footer-section ul li {
     margin-bottom: 12px;
     font-size: 15px;
 }
-
 .footer-section ul li a {
     color: #ddd; /* Цвет ссылок */
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s ease, padding-left 0.3s ease;
 }
-
 .footer-section ul li a:hover {
     color: #f5a623; /* Цвет ссылок при наведении */
     padding-left: 8px; /* Легкое смещение */
 }
-
 /* Стили для социальных сетей */
 .social-links {
     display: flex;
     gap: 15px;
     align-items: center;
 }
-
 .social-links li {
     list-style: none;
 }
-
 .social-links a {
     color: #f0f0f0;
     font-size: 24px;
     text-decoration: none;
     transition: color 0.3s ease, transform 0.3s ease;
 }
-
 .social-links a:hover {
     color: #f5a623; /* Цвет иконок при наведении */
     transform: scale(1.2); /* Эффект увеличения иконок */
 }
-
 /* Нижний футер */
 .footer-bottom {
     text-align: center;
@@ -449,29 +409,22 @@ img {
     font-size: 13px;
     color: #bbb;
 }
-
 .footer-bottom p {
     margin: 0;
     opacity: 0.7;
 }
-
 /* Добавление разделителя между секциями футера */
 .footer-section:not(:last-child) {
     border-right: 1px solid #333;
     padding-right: 30px;
 }
-
 .footer-section:last-child {
     padding-left: 30px;
 }
-
-
-
 .more_title{
     padding: 1em;
     margin: 1em;
 }
-
 .btn{
     padding: 1em;
     margin: 1em;
@@ -484,7 +437,6 @@ img {
     align-items: flex-end;
     flex-wrap: wrap;
 }
-
 .tab-button {
     display: flex;
     flex-direction: column;
@@ -500,14 +452,12 @@ img {
     position: relative;
     transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease; /* Плавные переходы */
 }
-
 .tab-button span {
     margin-top: auto;
     position: relative;
     z-index: 1000;
     transition: color 0.3s ease; /* Плавный переход для текста */
 }
-
 .tab-button::before {
     content: "";
     position: absolute;
@@ -519,44 +469,35 @@ img {
     z-index: 0;
     transition: background 0.3s ease; /* Плавный переход для затемнения */
 }
-
 /* Эффект на hover */
 .tab-button:hover {
     transform: scale(1.1); /* Увеличение кнопки */
     filter: brightness(1.2); /* Яркость */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Добавление тени */
 }
-
 /* При наведении на вкладку изменяется цвет текста */
 .tab-button:hover span {
     color: #fff; /* Текст становится белым на hover */
 }
-
 .tab-button[data-tab="action"] {
     background-image: url('https://cdn.magicdecor.in/com/2023/10/20180306/Dynamic-Action-Anime-Wallpaper-for-Wall.jpg');
 }
-
 .tab-button[data-tab="romance"] {
     background-image: url('https://t4.ftcdn.net/jpg/07/87/06/43/360_F_787064350_kZLKtFRKGuki3u6TmvqRfuRzGwWcyA2u.jpg');
 }
-
 .tab-button[data-tab="horror"] {
     background-image: url('https://img.freepik.com/premium-photo/creepy-scary-anime-girl-generative-ai_739548-16755.jpg');
 }
-
 /* Плавное появление текста на вкладке */
 .tab-button[data-tab="action"] span {
     animation: fadeInAction 1s ease-out forwards;
 }
-
 .tab-button[data-tab="romance"] span {
     animation: fadeInRomance 1s ease-out forwards;
 }
-
 .tab-button[data-tab="horror"] span {
     animation: fadeInHorror 1s ease-out forwards;
 }
-
 /* Ключевые кадры для анимации текста */
 @keyframes fadeInAction {
     0% {
@@ -568,7 +509,6 @@ img {
         transform: translateY(0);
     }
 }
-
 @keyframes fadeInRomance {
     0% {
         opacity: 0;
@@ -579,7 +519,6 @@ img {
         transform: translateY(0);
     }
 }
-
 @keyframes fadeInHorror {
     0% {
         opacity: 0;
@@ -590,7 +529,6 @@ img {
         transform: translateY(0);
     }
 }
-
 .more {
     display: block;
     width: 100%;
@@ -608,7 +546,6 @@ img {
 .more span:hover {
     background-color: rgba(255, 165, 0, 0.2); /* Hover effect */
 }
-
 /* Анимация для появления меню */
 @keyframes dropdown-appear {
     0% {
@@ -620,7 +557,6 @@ img {
         transform: translateY(0);
     }
 }
-
 /* Анимация для скрытия меню */
 @keyframes dropdown-disappear {
     0% {

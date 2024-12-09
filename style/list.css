@@ -1,6 +1,7 @@
 /* Основной шрифт для всего контента */
 body {
   font-family: 'Roboto', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 /* Шрифт для заголовков внутри карточки */

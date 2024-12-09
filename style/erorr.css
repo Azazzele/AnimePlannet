@@ -1,6 +1,6 @@
 /* Общие стили для страницы */
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family-heading);
     background-color: #f8d7da;
     color: #721c24;
     display: flex;

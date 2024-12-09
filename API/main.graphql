@@ -1,0 +1,27 @@
+const query = `
+query ($page: Int, $perPage: Int) {
+    Page(page: $page, perPage: $perPage) {
+        media {
+            id
+            title {
+                romaji
+                english
+            }
+            startDate {
+                year
+            }
+            format
+            coverImage {
+                large
+            }
+            genres
+            averageScore
+            studios {
+                nodes {
+                    name
+                }
+            }
+        }
+    }
+}
+`;

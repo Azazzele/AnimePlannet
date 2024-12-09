@@ -14,8 +14,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
 }
-
-
 .back-to-page {
     text-decoration: none;
     position: fixed;
@@ -38,6 +36,7 @@ body {
 }
 
 .character-details {
+    font-family: var(--font-family-heading);
     padding-top: 3em;
     max-width: 1600px;
     width: 100%;
@@ -64,6 +63,7 @@ body {
 }
 
 .info_charcter {
+    font-family: var(--font-family-heading);
     width: 100%;
     flex: 0 0 70%;
     margin: 1.5em;

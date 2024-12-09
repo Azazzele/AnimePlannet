@@ -6,6 +6,7 @@ body {
   align-items: center;
   height: 100vh;
   color:white;
+  font-family: var(--font-family-heading);
 }
 
 .login-container {

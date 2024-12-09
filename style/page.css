@@ -5,15 +5,18 @@ p{
     width: 100%;
 }
 .studio{
+    
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    word-break:keep-all;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 /* Общие стили для страницы */
 body {
-    font-family: var(--font-family);
+    font-family: var(--font-family-heading);
     margin: 0;
     padding: 0;
     width: 100%;
@@ -24,10 +27,8 @@ body {
     color: var(--text-color-dark);
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
+    font-size: 18px;
 }
-
-
-
 .name{
     display: flex;
     align-items: center;
@@ -45,7 +46,6 @@ body {
     width: 100%;
     margin: .4em;
     font-size: 1.5em;
-   
 }
 
 /* Контейнер для подробной информации */
@@ -72,7 +72,7 @@ body {
 
 /* Карточка с постером */
 .poster-card {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: var(--gap);
@@ -84,11 +84,13 @@ body {
 
 /* Основная информация */
 .main_info {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     height: 100%;
+    flex:  0 1 10%;
     gap: var(--gap);
 }
 
@@ -117,13 +119,13 @@ body {
 /* Стили для списка информации */
 .list_info {
     height: 100%;
-    width: 80%;
+    width: 100%;
     font-size: 22px;
     letter-spacing: 3px;
     line-height: 1.4;
-    display: flex;
+    display: block;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -134,7 +136,6 @@ strong {
 
 .list_info p {
     font-size: .8em;
-   
 }
 
 /* Изображение обложки аниме */
@@ -159,8 +160,33 @@ strong {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: center;
+    align-items: start;
     flex-wrap: wrap;
+}
+.title_name {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    color: white;
+}
+
+.details{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 1 10%;
+
+}
+.details h3{
+    font-size: 20px;
+}
+.details p{
+    font-size: 16px;
+}
+.details p:last-child{
+    text-align: right;
 }
 .title{
     display: flex;
@@ -174,12 +200,11 @@ strong {
     text-overflow: ellipsis;
     font-size: 20px;
     color: var(--text-color-dark);
-    line-height: 1.4;
+    line-height: 1.8;
     opacity: 0;
     transform: scale(0.9);
     animation: fadeIn 0.6s ease-out forwards;
     animation-delay: 0.3s;
-    line-height: 2.5;
     letter-spacing: 3px;
     font-weight: 700;
     text-align: left;
@@ -202,16 +227,11 @@ strong {
 }
 
 
-#anime-details .list_info p:first-child {
-    text-align: center;
-    font-size: var(--font-size-lg);
-}
-
 
 /* Кнопка назад */
 #anime-details a {
     display: inline-block;
-    margin: 10px 20px;
+
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -252,7 +272,7 @@ strong {
     border-bottom:  3px solid orange;
     color: white;
     
-}   
+}
 
 /* При наведении */
 .tab-button:hover {
@@ -266,7 +286,8 @@ strong {
     justify-content: center;
     align-items: flex-start;
     transition:  all .3s ease-in-out;
-   
+    width: 100%;
+    
 }
 /* Скрытие неактивных вкладок */
 .tab-pane {
@@ -288,7 +309,7 @@ strong {
 .list_info {
     width: 100%;
     padding: 20px;
-    
+    transition: all 0.3s ease;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
@@ -300,6 +321,7 @@ strong {
     margin: 20px; 
     border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 /* Адаптивность */
@@ -312,19 +334,19 @@ strong {
 h3 {
     font-size: var(--font-size-lg);
     color: #fff;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+
 }
 
 .character-list {
     display: flex;
     overflow: hidden;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 38px;
     width: 100%;
     max-width: 100%;
     align-items: flex-start;   /* Выравнивание по началу по вертикали (если контейнер — это Flexbox) */
     justify-content: flex-start; /* Выравнивание по началу по горизонтали */
+    transition: all 0.3s ease;
 }
 
 .character {
@@ -332,6 +354,7 @@ h3 {
     align-self: flex-start;  /* Элементы будут выравниваться по началу внутри контейнера */
     transition:  .4s ease-in-out;
     border-radius: 15px;
+    transition: all 0.3s ease;
 }
 .character:hover{
     transform: scale(1.03);
@@ -342,7 +365,9 @@ h3 {
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
-
+}
+.character-card{
+    max-width: 230px;
 }
 /* Переходы и анимации */
 @keyframes fadeIn {
@@ -355,7 +380,6 @@ h3 {
         transform: scale(1);
     }
 }
-
 .actions {
     width: 100%;
     text-align: center;
@@ -379,25 +403,11 @@ h3 {
     font-size: 16px;  
 }
 .genre-container {
-  display: flex;
-  flex-wrap: wrap;        
-  justify-content: flex-start;  
-  gap: 8px;               /* Промежуток между жанрами */
-  width: 80%;
-  transform: translateX(-12%);         /* Ограничиваем ширину контейнера */
-}
-.genre {
-  padding: 5px 10px;
-  font-size: 14px;
-  justify-content: center;
-  margin-bottom: 8px;         /* Отступ снизу для каждого жанра */
-  min-width: 100px;         
-  text-align: center;         /* Центрируем текст внутри жанра */
-  white-space: nowrap;        /* Запрещаем перенос текста внутри */
-  display: inline-flex;       
-  color: #ECF0F1;
-  border-radius: 5px;
-  margin-right: 8px;
+    display: flex;
+    flex-wrap: wrap;        
+    justify-content: flex-start;  
+    gap: 8px;               /* Промежуток между жанрами */
+    width: 80%;
 }
 .genre i {
   margin-left: 5px; /* Отступ для иконки */
@@ -409,66 +419,93 @@ h3 {
     border-top:  3px solid;
     padding: 1em;
 }
-
 #commentInput {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-    
-  resize: vertical;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    resize: vertical;
 }
-
 .btn-submit {
-  background-color: #2C3E50;
-  color: #ECF0F1;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
 }
-
-.btn-submit:hover {
-  background-color: #34495E;
+.genre{
+    text-align: left;
+    padding: 5px;  
+    font-weight: 900;
+    margin: 10px;
 }
-/* Стили для жанров с темным фоном */
-.genre {
-  background-color: #2C3E50;
-  color: #ECF0F1;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 8px;
-}
-
 .genre-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+/* Стили для кнопок */
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+button:focus {
+    outline: none;
+}
+button i {
+    font-size: 1.5rem;
+}
+#favoriteBtn.active {
+    color: red;
+}
+.birthday-icon {
+    color: gold;
+}
+.birthday-icon i {
+    font-size: 1.2rem;
+}
+.next-episode{
+    display: inline-block;
+    text-align: left;
+    border:  dashed 3px;
+    margin-top: 1em;
+    padding: 1.1em;
+}
+
+.next-episode .time{
+    color: rgb(255, 0, 76);
+}
+.recommendations {
+  margin-top: 30px;
+}
+
+.recommendation-list {
   display: flex;
   flex-wrap: wrap;
 }
 
-/* Стили для кнопок */
-button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
+.recommendation-link {
+  margin: 10px;
+  text-decoration: none;
 }
 
-button:focus {
-  outline: none;
+.recommendation-card {
+  width: 200px;
+  height: 300px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-button i {
-  font-size: 1.5rem;
-}
-
-#favoriteBtn.active {
-  color: red;
-}
-
-.birthday-icon {
-  color: gold;
-}
-
-.birthday-icon i {
-  font-size: 1.2rem;
+.recommendation-card p {
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
 }

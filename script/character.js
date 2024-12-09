@@ -1,3 +1,5 @@
+import { getMonthName, getFormatText,getGenderInRussian, getBirthDateString,checkBirthday } from '../Ru/units.js'; 
+
 // Получаем параметры из URL
 const urlParams = new URLSearchParams(window.location.search);
 const characterId = urlParams.get('id');  // ID персонажа
@@ -83,24 +85,24 @@ if (!characterId || !characterName) {
     const imageUrl = character.image ? character.image.large : 'https://via.placeholder.com/150?text=No+Image';
     const birthDate = character.dateOfBirth || {};
     const description = character.description || 'Описание не доступно';
-    // Проверяем и выводим дату рождения
+
     const birthDateString = getBirthDateString(birthDate);
-    // Проверка на день рождения персонажа
+
     const birthdayIcon = checkBirthday(birthDate);
 
 
-    const mediaItems = character.media.edges.length > 0 ? character.media.edges.map(edge => {
-  const format = getFormat(edge.node.format);
+  const mediaItems = character.media.edges.length > 0 ? character.media.edges.map(edge => {
+  const format = getFormatText(edge.node.format);
   const title = edge.node.title.romaji || 'Неизвестно';
   const coverImage = edge.node.coverImage.extraLarge || 'https://via.placeholder.com/150?text=No+Image';
 
   return `
     <li class="${format.class}">
-      <a href="../page.html?name=${encodeURIComponent(title)}&animeId=${edge.node.id}" class="character-link">
+      <a href="../page.html?name=${encodeURIComponent(title)}&id=${edge.node.id}" class="character-link">
         <img src="${coverImage}" alt="${title}" style="max-width: 100px; height: auto;">
         <div class="title_name">
           <div class="details"> <span>${title}</span></div>
-          <div class="details"> <span>${format.label}</span></div>
+          <div class="details"> <span>${format}</span></div>
         </div>
       </a> 
     </li>
@@ -178,70 +180,9 @@ if (!characterId || !characterName) {
     `;
   }
 
-  // Функция для получения имени месяца по его номеру
-  function getMonthName(monthNumber) {
-    const months = [
-      'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-      'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
-    ];
-    return months[monthNumber - 1] || 'Неизвестно'; // monthNumber начинается с 1
-  }
-// Функция для получения пола на русском
-  function getGenderInRussian(gender) {
-    switch (gender) {
-      case 'MALE':
-        return 'Мужской';
-      case 'FEMALE':
-        return 'Женский';
-      default:
-        return 'Неизвестно';
-    }
-  }
-  // Функция для получения строки даты рождения
-  function getBirthDateString(birthDate) {
-    const day = birthDate.day != null ? birthDate.day : 'Неизвестно';
-    const month = birthDate.month != null ? getMonthName(birthDate.month) : 'Неизвестно';
-    const year = birthDate.year != null ? birthDate.year : 'Неизвестно';
-    return `${day} ${month} ${year}`;
-  }
-
-  // Функция для проверки, является ли сегодня день рождения персонажа
-  function checkBirthday(birthDate) {
-    const today = new Date();
-    const currentDay = today.getDate();
-    const currentMonth = today.getMonth() + 1; // В JavaScript месяцы начинаются с 0, поэтому прибавляем 1
-
-    if (birthDate.day === currentDay && birthDate.month === currentMonth) {
-      return `
-        <div class="birthday-celebration">
-          <span>🎂 С Днем Рождения! 🎉</span>
-        </div>
-      `;
-    }
-    return ''; // Возвращаем пустую строку, если сегодня не день рождения
-  }
-  function getFormat(format) {
-  switch (format) {
-    case 'MANGA':
-      return { label: 'Манга', class: 'format-manga' };
-    case 'NOVELE':
-      return { label: 'Ранобэ', class: 'format-novele' };
-    case 'TV':
-      return { label: 'Тв сериал', class: 'format-tv' };
-    case 'MOVIE':
-      return { label: 'Фильм', class: 'format-movie' };
-    case 'OVA':
-      return { label: 'OVA', class: 'format-ova' };
-    case 'ONA':
-      return { label: 'ONA', class: 'format-ona' };
-    case 'SPECIAL':
-      return { label: 'Тв спешиал', class: 'format-special' };
-    default:
-      return { label: 'Неизвестно', class: 'format-unknown' };
-  }
 }
 
-}
+  
  function handleError(error) {
   console.error('Ошибка при получении данных:', error);
   characterDetailsContainer.innerHTML = `

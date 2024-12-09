@@ -1,5 +1,7 @@
-import './navbar.js';
+import {getFormatText,getGenres} from '../Ru/units.js';
+import './navbar.js'
 
+// Запрос GraphQL
 const query = `
   query ($page: Int, $perPage: Int) {
     Page(page: $page, perPage: $perPage) {
@@ -16,6 +18,13 @@ const query = `
           year
         }
         averageScore
+        format
+        description
+        genres
+        chapters
+
+        duration
+        volumes
       }
       pageInfo {
         total
@@ -26,30 +35,41 @@ const query = `
   }
 `;
 
+// Переменные для пагинации
 let currentPage = 1;
-const perPage = 28; // Количество манги на одной странице
+const perPage = 35; // Количество манги на одной странице
 
-const list = document.querySelector('#list_manga_main'); // Контейнер для манги
-const paginationContainer = document.querySelector('#paginationContainer'); // Контейнер для пагинации
+const list = document.querySelector('#list_manga_main'); 
+const paginationContainer = document.querySelector('#pagination-container'); 
 
-const url = 'https://graphql.anilist.co';
-const options = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
-  body: JSON.stringify({
-    query: query,
-    variables: { page: currentPage, perPage: perPage },
-  }),
+const variables = {
+  page: currentPage,
+  perPage: perPage,
 };
 
-// Отправка запроса и обработка ответа
-fetch(url, options)
-  .then(handleResponse) // Обрабатываем ответ
-  .then(handleData) // Обрабатываем данные
-  .catch(handleError); // Обрабатываем ошибки
+const url = 'https://graphql.anilist.co';
+
+function fetchData() {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+      variables: { page: currentPage, perPage: perPage },  // Используем currentPage для динамического запроса
+    }),
+  };
+
+  fetch(url, options)
+    .then(handleResponse)
+    .then(handleData)
+    .catch(handleError);
+}
+
+// Отправка запроса
+fetchData();
 
 // Функция для обработки ответа
 function handleResponse(response) {
@@ -78,19 +98,32 @@ function handleData(data) {
     const score = item.averageScore
       ? (item.averageScore / 10).toFixed(2)
       : 'Нет рейтинга'; // Рейтинг с десятичной точкой
-
-    // Строим HTML строку с помощью innerHTML
+    const format = item.format || 'Не указан';
+    const description = item.description ? item.description.replace(/<[^>]+>/g, '') : 'Описание не доступно';
+    const genres = item.genres ? item.genres : 'Не указаны';
+    const chapters = item.chapters ? item.chapters : '?';
+    const volume = item.volumes ? item.volumes : '?';
     list.innerHTML += `
-      <div class="card_title">
-        <a href="../page.html?id=${id}&title=${encodeURIComponent(title)}">
-          <div class="poster">
-            <img src="${poster}" alt="${title}">
-          </div>
-          <div class="info">
-            <div class="score">${score}</div>  <!-- Рейтинг с десятичной точкой -->
-          </div>
-        </a>
+    <a href="../page.html?title=${encodeURIComponent(title)}&id=${id}" class="manga-card-link">
+      <div class="card_title listaall">
+        <div class="poster">
+          <img src="${poster}" alt="${title}">
+        </div>
+        <div class="info">
+          <div class="score">${score}</div>
+          <div class="format">${getFormatText(format)}</div>
+          <div class="year">${year}</div>
+        </div>
+        <div class="hover-info">
+          <h3>${title}</h3>
+          <p>${description.length > 200 ? description.substring(0, 200) + '...' : description}</p>
+          <span class="genres">Жанры: ${getGenres(genres)}</span>
+          <span class="release-date">Дата выхода: ${year}</span>
+          <span class="chapters">Томов: ${volume}</span>
+          <span class="chapters">Глав: ${chapters}</span>
+        </div>
       </div>
+    </a>
     `;
   });
 
@@ -101,64 +134,43 @@ function handleData(data) {
   updatePagination(pageInfo.currentPage, totalPages);
 }
 
-// Функция для обновления пагинации
+/// Функция для обновления пагинации
 function updatePagination(currentPage, totalPages) {
   paginationContainer.innerHTML = ''; // Очищаем контейнер пагинации
 
-  // Дополнительные кнопки для навигации (например, для перехода к 1-й, последней странице)
+  // Кнопка "Первая"
   if (currentPage > 3) {
     paginationContainer.innerHTML += `
-      <button class="btn" onclick="changePage(1)">Первая</button>
+      <button class="btn" data-page="1">Первая</button>
     `;
   }
 
   // Кнопка "Назад"
   if (currentPage > 1) {
-    paginationContainer.innerHTML += `
-      <button class="btn" onclick="changePage(${
-        currentPage - 1
-      })">Назад</button>
-    `;
+     paginationContainer.innerHTML += `<button class="btn" data-page="${currentPage - 1}">Назад</button>`;
   }
 
-  // Текущая страница
-  paginationContainer.innerHTML += `<span>Страница ${currentPage} из ${totalPages}</span>`;
+ paginationContainer.innerHTML += `<span>Страница ${currentPage} из ${totalPages}</span>`;
 
-  // Кнопка "Вперед"
-  if (currentPage < totalPages) {
-    paginationContainer.innerHTML += `
-      <button class="btn" onclick="changePage(${
-        currentPage + 1
-      })">Вперед</button>
-    `;
+ if (currentPage < totalPages) {
+    paginationContainer.innerHTML += `<button class="btn" data-page="${currentPage + 1}">Вперед</button>`;
   }
+   // Добавление обработчиков событий для кнопок пагинации
+  const paginationButtons = paginationContainer.querySelectorAll('.btn');
+  paginationButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      const page = parseInt(event.target.getAttribute('data-page'));
+      changePage(page);
+    });
+  });
 }
+
 
 // Функция для изменения страницы
 function changePage(page) {
   currentPage = page;
   fetchData(); // Перезапрашиваем данные для новой страницы
   window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем страницу наверх
-}
-
-// Функция для отправки запроса с новыми параметрами
-function fetchData() {
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({
-      query: query,
-      variables: { page: currentPage, perPage: perPage },
-    }),
-  };
-
-  fetch(url, options)
-    .then(handleResponse)
-    .then(handleData)
-    .catch(handleError);
 }
 
 // Функция для обработки ошибок

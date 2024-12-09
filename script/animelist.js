@@ -1,3 +1,4 @@
+import {getFormatText,getGenres} from '../Ru/units.js';
 import './navbar.js'
 
 const query = `
@@ -79,7 +80,6 @@ function handleData(data) {
   media.forEach(item => {
     const id = item.id;
     const title = item.title.romaji || 'Без названия';
-    const englishTitle = item.title.english || 'Без английского названия';
     const year = item.startDate.year || 'Не указан';
     const poster = item.coverImage ? item.coverImage.extraLarge : 'default-image.jpg';
     const score = item.averageScore ? (item.averageScore / 10).toFixed(2) : 'Нет рейтинга';
@@ -87,10 +87,8 @@ function handleData(data) {
     const description = item.description ? item.description.replace(/<[^>]+>/g, '') : 'Описание не доступно';
 
     // Дополнительные данные для hover-info
-    const genres = item.genres ? item.genres.join(', ') : 'Не указаны';
+    const genres = item.genres ? item.genres : 'Не указаны';
     const episodes = item.episodes ? item.episodes : 'Не указано';
-    const status = item.status || 'Не указан';
-    const duration = item.duration || 'Не указана';
 
     list.innerHTML += `
     <a href="../page.html?title=${encodeURIComponent(title)}&id=${id}" class="anime-card-link">
@@ -100,13 +98,13 @@ function handleData(data) {
         </div>
         <div class="info">
           <div class="score">${score}</div>
-          <div class="format">${format}</div>
+          <div class="format">${getFormatText(format)}</div>
           <div class="year">${year}</div>
         </div>
         <div class="hover-info">
           <h3>${title}</h3>
           <p>${description.length > 200 ? description.substring(0, 200) + '...' : description}</p>
-          <span class="genres">Жанры: ${genres}</span>
+          <span class="genres">Жанры: ${getGenres(genres)}</span>
           <span class="release-date">Дата выхода: ${year}</span>
           <span class="episodes">Серий: ${episodes}</span>
         </div>
