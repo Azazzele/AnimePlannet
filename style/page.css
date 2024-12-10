@@ -1,18 +1,14 @@
-
+@import './reset.css';
 p{
     font-size: 24px;
     text-align: left;
     width: 100%;
 }
 .studio{
+    width: 50%;
+    word-wrap: break-word;
     
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    word-break:keep-all;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+
 }
 /* Общие стили для страницы */
 body {
@@ -62,6 +58,7 @@ body {
     height: 100%; 
     opacity: 0;
     transform: translateY(20px);
+    animation: fadeIn 0.6s ease-out forwards; /* Добавляем анимацию появления */
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
@@ -76,21 +73,31 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     gap: var(--gap);
-    align-items:safe;
-    justify-content: center;
+    align-items: safe;
+    justify-content: space-between;
     width: 100%;
     margin: 0 7em;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeIn 0.8s ease-out forwards;
 }
-
+.poster-card img {
+    
+    
+    height: auto;
+    border-radius: var(--border-radius);
+    margin: 0 auto;
+    transition: transform 0.3s ease-in-out;
+}
 /* Основная информация */
 .main_info {
     width: 100%;
     display: flex;
-    flex-direction: column;
+
     justify-content: space-evenly;
-    align-items: center;
+    align-items: start;
     height: 100%;
-    flex:  0 1 10%;
+   
     gap: var(--gap);
 }
 
@@ -102,6 +109,7 @@ body {
     justify-content: center;
     align-items: start;
     width: 100%;
+    
 }
 .banner {
   width: 100%;           /* Устанавливаем ширину на 100% от родительского элемента */
@@ -140,8 +148,7 @@ strong {
 
 /* Изображение обложки аниме */
 #anime-details .poster-card img {
-    width: 375px;
-    max-width: var(--poster-width);
+   
     height: auto;
     border-radius: var(--border-radius);
     margin: 0 auto;
@@ -151,6 +158,7 @@ strong {
 
 /* Стиль для контейнера с информацией */
 .info {
+    width: 100%;
     max-width: 100%;
     height: 100%;
     font-family: var(--font-family);
@@ -158,7 +166,7 @@ strong {
     text-align: center;
     color: var(--text-color-dark);
     display: flex;
-    flex-direction: column;
+    flex:  1 0  100%;
     justify-content: start;
     align-items: start;
     flex-wrap: wrap;
@@ -180,10 +188,11 @@ strong {
 
 }
 .details h3{
-    font-size: 20px;
+    text-transform:none;
+    font-size: 18px;
 }
 .details p{
-    font-size: 16px;
+    font-size: 13px;
 }
 .details p:last-child{
     text-align: right;
@@ -195,7 +204,7 @@ strong {
 }
 /* Стиль для колонок */
 .info p {
-    width: 100%; /* Делаем каждую колонку 48% ширины, чтобы они не выходили за пределы */
+   
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 20px;
@@ -231,16 +240,16 @@ strong {
 /* Кнопка назад */
 #anime-details a {
     display: inline-block;
-
     color: white;
     text-decoration: none;
-    border-radius: 5px;
+    
     font-size: var(--font-size-base);
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
 }
 
 #anime-details a:hover {
     background-color: var(--button-hover-color);
+    transform: scale(1.05);  /* Увеличиваем кнопку при наведении */
 }
 
 
@@ -249,11 +258,12 @@ strong {
     border-top: 2px solid #ddd;
     display: flex;
     justify-content: center;
-    margin: 7em 7em;
+    margin: 6em 0em 1em 0em;
     width: 100%;
     align-items: center;
     gap: 15px;
-    padding-top: 1em;
+    padding: 1em;
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 /* Кнопки вкладок */
@@ -265,6 +275,7 @@ strong {
     margin-right: 10px;
     border-bottom: 3px solid;
     transition: all 0.3s ease; /* Плавный переход */
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 /* Активная вкладка */
@@ -276,7 +287,7 @@ strong {
 
 /* При наведении */
 .tab-button:hover {
-    
+    border-bottom:  3px solid orange;
     color: white;
 }
 
@@ -287,6 +298,7 @@ strong {
     align-items: flex-start;
     transition:  all .3s ease-in-out;
     width: 100%;
+    animation: fadeIn 0.5s ease-out forwards;
     
 }
 /* Скрытие неактивных вкладок */
@@ -314,7 +326,11 @@ strong {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
-
+.trailer{
+    margin-top: 3em;
+    width: 100%;
+    
+}
 /* Персонажи */
 .characters {
     width: 100%;
@@ -322,6 +338,7 @@ strong {
     border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    text-align: left;
 }
 
 /* Адаптивность */
@@ -341,9 +358,10 @@ h3 {
     display: flex;
     overflow: hidden;
     flex-wrap: wrap;
-    gap: 38px;
+    gap: 23px;
     width: 100%;
     max-width: 100%;
+    padding: 1em;
     align-items: flex-start;   /* Выравнивание по началу по вертикали (если контейнер — это Flexbox) */
     justify-content: flex-start; /* Выравнивание по началу по горизонтали */
     transition: all 0.3s ease;
@@ -356,29 +374,27 @@ h3 {
     border-radius: 15px;
     transition: all 0.3s ease;
 }
-.character:hover{
-    transform: scale(1.03);
-    box-shadow: 0 0 30px inset rgb(65, 64, 64);
-}
+
 .character img {
     width: 250px;
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out;
+
 }
 .character-card{
+    width: 100%;
     max-width: 230px;
+    transition: transform 0.4s ease-in-out, opacity 0.3s ease;
 }
-/* Переходы и анимации */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+
+.character-card p {
+    display: inline;
+}
+.birthday-celebration{
+    display: inline;
+    color: var(--link-hover-bg);
 }
 .actions {
     width: 100%;
@@ -387,7 +403,7 @@ h3 {
     margin-top: 10px;
 }
 .actions button {
-    border-radius: 5px;
+    
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -477,35 +493,86 @@ button i {
 .next-episode .time{
     color: rgb(255, 0, 76);
 }
-.recommendations {
-  margin-top: 30px;
+/* Анимация для появления элементов */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.recommendation-list {
-  display: flex;
-  flex-wrap: wrap;
+/* Плавный переход для фона */
+@keyframes fadeBackground {
+    0% {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 }
 
-.recommendation-link {
-  margin: 10px;
-  text-decoration: none;
+/* Добавляем плавный переход для кнопок */
+@keyframes buttonHover {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+/* Стиль для кнопки статуса */
+.status-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 380px;
+  margin: 20px 0;
+  
 }
 
-.recommendation-card {
-  width: 200px;
-  height: 300px;
-  background-color: #f1f1f1;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.recommendation-card p {
-  text-align: center;
+.status-btn {
+  background-color: var(--accent-color-dark);
+  color: white;
   padding: 10px;
   font-size: 16px;
-  font-weight: bold;
-  color: #333;
+  width: 100%;
+  cursor: pointer;
+    
+  
+}
+
+
+/* Стиль для выпадающего меню */
+.status-menu {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+ 
+}
+
+.status-menu a {
+  color: black;
+    background-color: var(--accent-color-dark);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+
+.status-menu a:hover {
+  background-color: #ddd;
+  
+}
+
+/* Отображение меню при активации */
+.status-dropdown:hover .status-menu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
 }

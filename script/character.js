@@ -13,7 +13,7 @@ if (!characterId || !characterName) {
 } else {
   // ГрафQL-запрос для получения подробной информации о персонаже
   const query = `
-  query ($id: Int) {
+  query ($id: Int, $asHtml: Boolean) {
     Character (id: $id) {
       name {
         full
@@ -21,7 +21,7 @@ if (!characterId || !characterName) {
       image {
         large
       }
-      description
+      description(asHtml: $asHtml)
       dateOfBirth {
         day
         month
@@ -41,6 +41,9 @@ if (!characterId || !characterName) {
             coverImage {
               extraLarge
             }
+            startDate {
+              year
+            }
           }
             
         }
@@ -50,7 +53,8 @@ if (!characterId || !characterName) {
   `;
 
   const variables = {
-    id: parseInt(characterId)  // Используем ID персонажа
+    id: parseInt(characterId),  // Используем ID персонажа
+    asHtml: true
   };
 
   const url = 'https://graphql.anilist.co';
@@ -95,17 +99,18 @@ if (!characterId || !characterName) {
   const format = getFormatText(edge.node.format);
   const title = edge.node.title.romaji || 'Неизвестно';
   const coverImage = edge.node.coverImage.extraLarge || 'https://via.placeholder.com/150?text=No+Image';
-
+  const startDateTitle = edge.node.startDate.year
   return `
-    <li class="${format.class}">
       <a href="../page.html?name=${encodeURIComponent(title)}&id=${edge.node.id}" class="character-link">
         <img src="${coverImage}" alt="${title}" style="max-width: 100px; height: auto;">
         <div class="title_name">
           <div class="details"> <span>${title}</span></div>
-          <div class="details"> <span>${format}</span></div>
+          <div class="details"> 
+            <p>${format}</p>
+             <p>${startDateTitle}</p>   
+          </div>
         </div>
       </a> 
-    </li>
   `;
 }).join('') : '<li>Нет медиа-сериалов</li>';
   const collectionsCount = character.collections ? character.collections.length : 0;
@@ -131,11 +136,10 @@ if (!characterId || !characterName) {
       <div class="character-details">
         <div class="poster_info">
           <img src="${imageUrl}" alt="${character.name.full}">
-          <h3>${character.name.full}</h3>
-          
-          <!-- Иконка дня рождения -->
-          ${birthdayIcon}
-          
+          <h3 class="name">
+            <span>${character.name.full}</span> 
+            <span>${birthdayIcon}</span>
+          </h3>
         <div class="icon-container">
           <a href="#" class="icon-link" title="Добавить в коллекцию">
             <i class="fa fa-heart"></i>

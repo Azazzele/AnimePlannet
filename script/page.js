@@ -1,4 +1,5 @@
-import { getStatusText, getFormatText, getGenres } from '../Ru/units.js'; 
+import { getStatusText, getFormatText, getGenres,checkBirthday } from '../Ru/units.js'; 
+
 
 // Получаем параметры из URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -9,27 +10,29 @@ const detailsContainer = document.querySelector('#anime-details');
 
 // ГрафQL-запрос для получения подробной информации
 const query = `
-  query ($id: Int) {
+  query ($id: Int, $page: Int, $perPage: Int,   $sort: [CharacterSort],$recommendationsPage2: Int,   $recommendationsPerPage2: Int) {
   Media (id: $id) {
-    recommendations {
-        nodes {
+    recommendations(page: $recommendationsPage2, perPage: $recommendationsPerPage2) {
+      edges {
+        node {
           id
-          media {
-            id
+          mediaRecommendation {
             title {
-              english
+              romaji
+              
+            }
+            id
+            format
+            startDate {
+              year
+            }
+            coverImage {
+              extraLarge
             }
           }
-            
-        }
-        pageInfo {
-          total
-          perPage
-          currentPage
-          lastPage
-          hasNextPage
         }
       }
+    }
     type
     format
     title {
@@ -58,7 +61,8 @@ const query = `
     seasonYear
     season
     format
-    characters {
+    duration
+    characters(page: $page, perPage: $perPage,  sort: $sort) {
       edges {
         node {
           id
@@ -69,12 +73,17 @@ const query = `
             large
           }
           dateOfBirth {
-            day
-            month
             year
+            month
+            day
           }
         }
       }
+    }
+    trailer {
+      id
+      site
+      thumbnail
     }
     averageScore
     popularity
@@ -139,7 +148,12 @@ const query = `
 }`;
 
 const variables = {
-  id: parseInt(id)  // Используем ID, переданный в URL
+  id: parseInt(id),  
+  page: 1,
+  perPage: 25,
+  sort: ["ID"],
+  recommendationsPage2: 1,
+  recommendationsPerPage2: 25,
 };
 
 const url = 'https://graphql.anilist.co';
@@ -151,7 +165,8 @@ const options = {
   },
   body: JSON.stringify({
     query: query,
-    variables: variables
+    variables: variables,
+
   })
 };
 
@@ -187,12 +202,10 @@ function handleData(data) {
     nextEpisodeInfo = `
       <div class="next-episode">
         <h3>Следующий эпизод:</h3>
-        <p> Эпизод <span>${nextEpisode.episode}</span></p>
+        <p>Эпизод <span>${nextEpisode.episode}</span></p>
         <p>Дата выхода: ${nextEpisodeTime.toLocaleString('ru-RU')}</p>
         <p class="time">До выхода: ${formatTimeUntilAiring(timeUntilAiring)}</p>
-      </div\>
-    `;
-     
+      </div>`;
   }
 
   // Обрабатываем изображение баннера и постера
@@ -201,21 +214,24 @@ function handleData(data) {
  
   const genres = (media.genres.length > 0 ? media.genres : 'Жанры не указаны');
 
-  // Персонажи
+    // Персонажи
   const characters = media.characters.edges.length > 0 ? media.characters.edges.map(character => {
     const characterData = character.node;
     const characterId = characterData.id;
     const characterName = characterData.name.full;
+    const birthDate = characterData.dateOfBirth; // Получаем дату рождения персонажа
+    const birthdayCelebration = checkBirthday(birthDate); // Функция, которая вернет HTML для торта
     return `
       <a href="html/character.html?name=${encodeURIComponent(media.title.romaji)}&id=${characterId}" class="character-link">
         <div class="character-card">
           <img src="${characterData.image.large}" alt="${characterData.name.full}">
-          <p>${characterName}</p>
+          <p>${characterName}${birthdayCelebration}</p>
         </div>
       </a>
     `;
   }).join(' ') : 'Персонажи не указаны';
 
+const mediacountryOfOrigin = media.countryOfOrigin
 // Сотрудники
 const staffSet = new Set();  // Множество для уникальных сотрудников
 const staff = media.staff.nodes.length > 0 ? media.staff.nodes.map(person => {
@@ -241,23 +257,105 @@ const staff = media.staff.nodes.length > 0 ? media.staff.nodes.map(person => {
 
   return '';  // Если сотрудник уже добавлен, пропускаем его
 }).join(' ') : 'Сотрудники не указаны';
-const recommendations = media.recommendations.nodes.length > 0 
-  ? media.recommendations.nodes.map(recommendation => {
-      const recommendationData = recommendation.media;
-      const recommendationId = recommendationData.id;
-      const recommendationTitle = recommendationData.title.english || 'Без названия';
-      const recommendationImage = recommendationData.coverImage ? recommendationData.coverImage.extraLarge : 'https://via.placeholder.com/200x300?text=No+Image';
-      
-      return `
-        <a href="page.html?name=${encodeURIComponent(recommendationTitle)}&id=${recommendationId}" class="recommendation-link">
-          <div class="recommendation-card">
-            <img src="${recommendationImage}" alt="${recommendationTitle}">
-            <p>${recommendationTitle}</p>
-          </div>
-        </a>
+
+
+let trailerSection = '';
+
+// Проверяем, если это манга или ранобэ
+if (media.format !== 'MANGA' && media.format !== 'NOVEL') {
+  // Если это не манга и не ранобэ, показываем трейлер
+  if (media.trailer && media.trailer.id && media.trailer.site) {
+    const trailerId = media.trailer.id;
+    const trailerSite = media.trailer.site; 
+    const trailerThumbnail = media.trailer.thumbnail || 'https://via.placeholder.com/500x300?text=No+Thumbnail';  // Fallback для отсутствующей миниатюры
+    
+    let videoSource = '';  // Источник видео
+    let videoElement = ''; // Элемент для вывода видео
+
+    // Проверяем, какой сайт указан и формируем правильный источник для видео
+    if (trailerSite === 'youtube') {
+      // Для YouTube формируем ссылку на embed-версию видео
+      videoSource = `https://www.youtube.com/embed/${trailerId}?autoplay=1`;
+      videoElement = `
+        <iframe width="100%" height="500" src="${videoSource}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       `;
-    }).join(' ') 
-  : 'Рекомендации не указаны';
+    } else if (trailerSite === 'vimeo') {
+      // Для Vimeo формируем ссылку на embed-версию видео
+      videoSource = `https://player.vimeo.com/video/${trailerId}?autoplay=1`;
+      videoElement = `
+        <iframe src="${videoSource}" width="100%" height="500" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      `;
+    } else if (trailerSite === 'funimation') {
+      // Для Funimation можно использовать прямую ссылку на видео
+      videoSource = `https://www.funimation.com/videos/${trailerId}`;
+      videoElement = `
+        <video width="100%" height="500" controls>
+          <source src="${videoSource}" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+      `;
+    } else {
+      // Если сайт не поддерживает встраивание, и у нас есть URL видеофайла, то используем тег video
+      videoSource = `${trailerThumbnail}`;  // Используем ссылку на миниатюру как fallback
+      videoElement = `
+        <video width="100%" height="500" controls>
+          <source src="${videoSource}" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+      `;
+    }
+    
+    trailerSection = `
+      <div class="trailer-section">
+        <h3>Трейлер</h3>
+        ${videoElement}
+      </div>
+    `;
+  } else {
+    trailerSection = '<p>Трейлер не доступен.</p>';  // Если данных о трейлере нет
+  }
+} else {
+  trailerSection = '';  // Если это манга или ранобэ, трейлер не показываем
+}
+
+
+
+ // Обрабатываем рекомендации
+  const recommendations = media.recommendations.edges.length > 0 
+    ? media.recommendations.edges.map(recommendation => {
+        const recommendationData = recommendation.node.mediaRecommendation;  // Используем mediaRecommendation
+        
+        // Проверяем, что есть данные
+        if (!recommendationData) {
+          return ''; // Если данных нет, пропускаем
+        }
+
+        // Получаем информацию о рекомендации
+        const recommendationId = recommendationData.id;
+        const recommendationTitle = recommendationData.title.english || recommendationData.title.romaji || recommendationData.title.native || 'Без названия';
+        const recommendationImage = recommendationData.coverImage ? recommendationData.coverImage.extraLarge : 'https://via.placeholder.com/200x300?text=No+Image';
+        const formatTitle = getFormatText(recommendationData.format)
+        const startDate = recommendationData.startDate.year
+        // Создаем HTML-контент для каждой рекомендации
+        return `
+          <a href="page.html?name=${encodeURIComponent(recommendationTitle)}&id=${recommendationId}" class="character-link">
+            <div class="character-card">
+              <img src="${recommendationImage}" alt="${recommendationTitle}">
+              <div class="title_name">
+                <div class="details">          
+                  <h3>${recommendationTitle}</h3>
+                </div>
+                 <div class="details">          
+                  <p>${getContentType(getFormatText(recommendationData.format) || 'Не указана страна',mediacountryOfOrigin)}</p>
+                   <p>${startDate}</p>
+                </div>
+              </div>
+            </div>
+          </a>
+        `;
+      }).join(' ') 
+    : 'Рекомендации не указаны';
+
 
   // Отношения (Relations)
   const relations = media.relations.edges.length > 0 ? media.relations.edges.map(relation => {
@@ -285,7 +383,7 @@ const recommendations = media.recommendations.nodes.length > 0
     `;
   }).join(' ') : 'Связанные аниме не указаны';
 
-  // Основной HTML-контент
+ // Основной HTML-контент
 detailsContainer.innerHTML = `
   <div class="banner">
     <img src="${bannerImage}" alt="Баннер ${media.title.romaji}">
@@ -300,49 +398,40 @@ detailsContainer.innerHTML = `
       <div class="poster">
         <img src="${coverImage}" alt="${media.title.romaji}">
         <div class="actions">
-          <!-- Кнопки действий -->
-          <button id="favoriteBtn" class="btn-favorite" title="Добавить в избранное">
-            <i class="fas fa-heart"></i>
-          </button>
-          <button id="planToWatchBtn" class="btn-plan" title="Запланировать просмотр">
-            <i class="fas fa-calendar-plus"></i>
-          </button>
-          <button id="removeBtn" class="btn-remove" title="Удалить">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-          <button id="watchBtn" class="btn-watch" title="Посмотреть">
-            <i class="fas fa-eye"></i>
-          </button>
-          <button id="rateBtn" class="btn-rate" title="Оценить">
-            <i class="fas fa-star"></i>
-          </button>
+        <!-- Выпадающее меню для статусов -->
+        <div class="status-dropdown">
+          <button id="statusBtn" class="status-btn">Добавить в </button>
+          <div id="statusMenu" class="status-menu">
+            <a href="#" id="planToWatch">Запланировано</a>
+            <a href="#" id="watching">Смотрю</a>
+            <a href="#" id="watched">Просмотрено</a>  
+            <a href="#" id="dropped">Брошено</a> 
+          </div>
         </div>
       </div>
-      <p class="studio"><strong>Студия:</strong><span>${media.studios.nodes.slice(0, 4).map(studio => studio.name).join(', ') || 'Не указана'}</span></p>
+    
     </div>
     <div class="info">
       <p><strong><i class="fas fa-calendar-alt"></i> Период:</strong> ${formatDate(media.startDate, media.endDate)}</p>
+      <p><strong>Длительность серии:</strong> ${media.duration ? `${media.duration}(минут)` : 'Не указана'}</p>
 
       <p><strong>Эпизоды:</strong> ${media.episodes || 'Не указано'}</p>
+      <p class="studio"><strong>Студия:</strong><span>${media.studios.nodes.slice(0, 3).map(studio => studio.name).join(', ') || 'Не указана'}</span></p>
       <p><strong>Жанры:</strong>
         <div class="genre-container">
           <span class="genre">${getGenres(genres)}</span>
         </div>
       </p>
-     <p><i class="fas fa-star-half-alt"> <strong>Рейтинг:</strong> ${media.meanScore ? (media.meanScore / 10).toFixed(2) : 'Не указан'} / 10 </i></p>
+      <p><i class="fas fa-star-half-alt"> <strong>Рейтинг:</strong> ${media.meanScore ? (media.meanScore / 10).toFixed(2) : 'Не указан'} / 10 </i></p>
       <p><strong>Популярность:</strong> ${media.popularity || 'Не указано'}</p>
-      <p><strong>Формат:</strong> ${getContentType(formatTitle || 'Не указана страна', getFormatText(media.format) || 'Не указан',)}</p>
+      <p><strong>Формат:</strong> ${getContentType(getFormatText(media.format)|| 'Не указана страна', mediacountryOfOrigin)}</p>
       <p><strong>Статус:</strong> ${getStatusText(media.status) }</p>
-     
       <p><strong>Страна происхождения:</strong> ${getRegion(media.countryOfOrigin)}</p>
-      
-
-      <!-- Дополнительная информация -->
       ${media.season ? `<p><strong>Сезон:</strong><a href='' class="sesone_link">${media.season} ${media.seasonYear}</p></a>` : ''}
       ${nextEpisodeInfo}
     </div>
   </div>
-
+  
   <!-- Вкладки -->
   <div class="tabs">
     <button class="tab-button active" data-tab="description"><i class="fas fa-info-circle"></i> Описание</button>
@@ -353,14 +442,14 @@ detailsContainer.innerHTML = `
     <button class="tab-button" data-tab="reviews"><i class="fas fa-comments"></i> Отзывы</button>
     <button class="tab-button" data-tab="comments"><i class="fa-regular fa-comments"></i> Комментарии</button>
     <button class="tab-button" data-tab="recomend"><i class="fa-solid fa-sitemap"></i> Похожее</button>
-
-    
   </div>
+  
   <div class="tab-content">
     <div class="tab-pane active" id="description">
       <div class="list_info">
         <h3><strong>Описание</strong></h3>
         <p>${media.description || 'Описание не доступно'}</p>
+        <div class="trailer">${trailerSection}</div>
       </div>
     </div>
     <div class="tab-pane" id="farnshise">
@@ -412,18 +501,20 @@ detailsContainer.innerHTML = `
       </div>
     </div>
     <div class="tab-pane" id="recomend">
-      <div class="recommendations">
+      <div class="characters">
         <h3>Рекомендации:</h3>
-        <div class="recommendation-list">
+        <div class="character-list">
           ${recommendations}
+        </div>
       </div>
     </div>
   </div>
-  
+   
 `;
 
 detailsContainer.classList.add('loaded');
 setupTabSwitch(); 
+
 
 if (media.nextAiringEpisode && media.status === 'RELEASING') {
   setInterval(() => {
@@ -511,28 +602,23 @@ function getContentType(format, countryOfOrigin) {
   if (format === 'MANGA') {
     if (countryOfOrigin === 'JP') {
       return 'Манга (Япония)';
-    } else if (countryOfOrigin === 'KR') {
-      return 'Манхва (Корея)';
-    } else if (countryOfOrigin === 'CN') {
-      return 'Маньхуа (Китай)';
-    } else {
-      return 'Манга (Не указана страна)';
     }
+    // Если это манхва
+    if (countryOfOrigin === 'KR') {
+      return 'Манхва';
+    }
+    // Если это маньхуа
+    if (countryOfOrigin === 'CN') {
+      return 'Маньхуа';
+    }
+    return 'Не является мангой/манхвой/маньхвой';
+  }else if(format === 'NOVEL'){
+      return 'Ранобэ';
   }
   
-  // Если это манхва
-  if (format === 'MANHWA') {
-    return 'Манхва';
-  }
-
-  // Если это маньхуа
-  if (format === 'MANHUA') {
-    return 'Маньхуа';
-  }
-  
-  // Если не манга, не манхва и не маньхуа
-  return 'Не является мангой/манхвой/маньхвой';
+  return format || 'Не указан';
 }
+
 
 
 
