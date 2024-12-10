@@ -102,9 +102,9 @@ if (!characterId || !characterName) {
   const startDateTitle = edge.node.startDate.year
   return `
       <a href="../page.html?name=${encodeURIComponent(title)}&id=${edge.node.id}" class="character-link">
-        <img src="${coverImage}" alt="${title}" style="max-width: 100px; height: auto;">
+        <img src="${coverImage}" alt="${title}" style="max-width: 210px; height: auto; border-radius:5px">
         <div class="title_name">
-          <div class="details"> <span>${title}</span></div>
+          <div class="details"> <h2>${title}</h2></div>
           <div class="details"> 
             <p>${format}</p>
              <p>${startDateTitle}</p>   
@@ -140,34 +140,35 @@ if (!characterId || !characterName) {
             <span>${character.name.full}</span> 
             <span>${birthdayIcon}</span>
           </h3>
-        <div class="icon-container">
-          <a href="#" class="icon-link" title="Добавить в коллекцию">
-            <i class="fa fa-heart"></i>
-            <span class="icon-text">Добавить в коллекцию</span> <!-- Текст, который будет показываться при наведении -->
-          </a>
-          <a href="#" class="icon-link" title="Поделиться">
-            <i class="fa fa-share-alt"></i>
-            <span class="icon-text">Поделиться</span> <!-- Текст, который будет показываться при наведении -->
-          </a>
-          <a href="#" class="icon-link" title="Сделать фаворитом">
-            <i class="fa fa-bolt"></i>
-            <span class="icon-text">Сделать фаворитом</span> <!-- Текст, который будет показываться при наведении -->
-          </a>
-          <a href="#" class="icon-link" title="Редактировать" onclick="editCharacter()"><i class="fa fa-edit"></i>
-          <span class="icon-text">Редактировать</span>
-          </a>
-        </div>
+          <div class="icon-container">
+            <a href="#" class="icon-link" title="Добавить в коллекцию">
+              <i class="fa fa-heart"></i>
+              <span class="icon-text">Добавить в коллекцию</span>
+            </a>
+            <a href="#" class="icon-link" title="Поделиться">
+              <i class="fa fa-share-alt"></i>
+              <span class="icon-text">Поделиться</span>
+            </a>
+            <a href="#" class="icon-link" title="Сделать фаворитом">
+              <i class="fa fa-bolt"></i>
+              <span class="icon-text">Сделать фаворитом</span>
+            </a>
+            <a href="#" class="icon-link" title="Редактировать" onclick="editCharacter()">
+              <i class="fa fa-edit"></i>
+              <span class="icon-text">Редактировать</span>
+            </a>
+          </div>
 
-          
-          <aside class="aside">
-            <div class="collection_name">
-                <h2>В Коллекциях <span id="countCollection">${collectionsCount}</span></h2>
-                <h2>В списках у <span id="countLists">${listsCount}</span></h2>
-            </div>
-          </aside>    
+      
         </div>
         
         <div class="info_charcter">
+         <aside class="aside">
+            <div class="collection_name">
+                <h2>В Коллекциях <span id="countCollection">${collectionsCount}</span></h2>
+                <h2>В избранном у <span id="countLists">${listsCount}</span></h2>
+            </div>
+          </aside>    
           <p>${description}</p>
           <div class="other_info">
             <h3>Дата рождения: ${birthDateString}</h3>

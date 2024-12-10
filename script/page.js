@@ -1,4 +1,4 @@
-import { getStatusText, getFormatText, getGenres,checkBirthday } from '../Ru/units.js'; 
+import { getStatusText, getFormatText, getGenres,checkBirthday, getSesone } from '../Ru/units.js'; 
 
 
 // Получаем параметры из URL
@@ -246,8 +246,8 @@ const staff = media.staff.nodes.length > 0 ? media.staff.nodes.map(person => {
     const personLink = `html/character.html?id=${personId}`;  // Ссылка на страницу сотрудника
 
     return `
-      <a href="${personLink}" class="staff-link">
-        <div class="staff-card">
+      <a href="${personLink}" class="character-link">
+        <div class="character-card">
           <img src="${person.image.large}" alt="${person.name.full}">
           <p>${person.name.full}</p>
         </div>
@@ -397,21 +397,29 @@ detailsContainer.innerHTML = `
     <div class="main_info">
       <div class="poster">
         <img src="${coverImage}" alt="${media.title.romaji}">
-        <div class="actions">
-        <!-- Выпадающее меню для статусов -->
-        <div class="status-dropdown">
-          <button id="statusBtn" class="status-btn">Добавить в </button>
-          <div id="statusMenu" class="status-menu">
-            <a href="#" id="planToWatch">Запланировано</a>
-            <a href="#" id="watching">Смотрю</a>
-            <a href="#" id="watched">Просмотрено</a>  
-            <a href="#" id="dropped">Брошено</a> 
+        
+          <div class="icon-container">
+            <button id="planToWatch" title="Запланировано">
+              <i class="fas fa-calendar-plus"></i>
+            </button>
+            <button id="watching" title="Смотрю">
+              <i class="fas fa-play-circle"></i>
+            </button>
+            <button id="watched" title="Просмотрено">
+              <i class="fas fa-check-circle"></i>
+            </button>
+            <button id="dropped" title="Брошено">
+              <i class="fas fa-times-circle"></i>
+            </button>
           </div>
-        </div>
-      </div>
-    
     </div>
     <div class="info">
+            <aside class="aside">
+            <div class="collection_name">
+                <h2>В Коллекциях <span id="countCollection">0</span></h2>
+                <h2>В избранном у <span id="countLists">0 </span></h2>
+            </div>
+          </aside> 
       <p><strong><i class="fas fa-calendar-alt"></i> Период:</strong> ${formatDate(media.startDate, media.endDate)}</p>
       <p><strong>Длительность серии:</strong> ${media.duration ? `${media.duration}(минут)` : 'Не указана'}</p>
 
@@ -427,7 +435,7 @@ detailsContainer.innerHTML = `
       <p><strong>Формат:</strong> ${getContentType(getFormatText(media.format)|| 'Не указана страна', mediacountryOfOrigin)}</p>
       <p><strong>Статус:</strong> ${getStatusText(media.status) }</p>
       <p><strong>Страна происхождения:</strong> ${getRegion(media.countryOfOrigin)}</p>
-      ${media.season ? `<p><strong>Сезон:</strong><a href='' class="sesone_link">${media.season} ${media.seasonYear}</p></a>` : ''}
+      ${media.season ? `<p><strong>Сезон: </strong><a href='../html/anilist.html?season=${media.season}&year=${media.seasonYear}' class="sesone_link">${getSesone(media.season)} ${media.seasonYear}</p></a>` : ''}
       ${nextEpisodeInfo}
     </div>
   </div>

@@ -58,7 +58,9 @@
             </a>
         </li>
     </ul>
-    
+    <button type="submit" class="filter-btn">
+    <i class="fas fa-filter" aria-hidden="true"></i> Применить фильтры
+</button>
     <!-- Строка поиска -->
     <div class="search-container">
         <form action="" method="get">
@@ -80,6 +82,85 @@
 </nav>
 
 
+<div class="filter__wrapper">
+    <div class="filter-item">
+        <label for="genre"><i class="fas fa-film" aria-hidden="true"></i> Жанр:</label>
+        <select id="genre" name="genre">
+            <option value="all">Все</option>
+            <option value="action">Экшн</option>
+            <option value="romance">Романтика</option>
+            <option value="comedy">Комедия</option>
+            <option value="fantasy">Фэнтези</option>
+            <!-- Добавьте другие жанры по необходимости -->
+        </select>
+    </div>
+
+    <!-- Фильтр по году -->
+    <div class="filter-item">
+        <label for="year"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Год:</label>
+        <select id="year" name="year">
+            <option value="all">Все</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <!-- Добавьте другие года по необходимости -->
+        </select>
+    </div>
+
+    <!-- Фильтр по рейтингу -->
+    <div class="filter-item">
+        <label for="rating"><i class="fas fa-star" aria-hidden="true"></i> Рейтинг:</label>
+        <select id="rating" name="rating">
+            <option value="all">Все</option>
+            <option value="g">G - Все возрасты</option>
+            <option value="pg">PG - Детям</option>
+            <option value="pg13">PG-13</option>
+            <option value="r">R - Ограничение по возрасту</option>
+            <option value="nc17">NC-17</option>
+        </select>
+    </div>
+     <div class="filter-item">
+        <label for="rating"><i class="fas fa-star" aria-hidden="true"></i> Рейтинг:</label>
+        <select id="rating" name="rating">
+            <option value="all">Все</option>
+            <option value="g">G - Все возрасты</option>
+            <option value="pg">PG - Детям</option>
+            <option value="pg13">PG-13</option>
+            <option value="r">R - Ограничение по возрасту</option>
+            <option value="nc17">NC-17</option>
+        </select>
+    </div>
+
+     <div class="filter-item">
+        <label for="rating"><i class="fas fa-star" aria-hidden="true"></i> Рейтинг:</label>
+        <select id="rating" name="rating">
+            <option value="all">Все</option>
+            <option value="g">G - Все возрасты</option>
+            <option value="pg">PG - Детям</option>
+            <option value="pg13">PG-13</option>
+            <option value="r">R - Ограничение по возрасту</option>
+            <option value="nc17">NC-17</option>
+        </select>
+    </div>
+
+     <div class="filter-item">
+        <label for="rating"><i class="fas fa-star" aria-hidden="true"></i> Рейтинг:</label>
+        <select id="rating" name="rating">
+            <option value="all">Все</option>
+            <option value="g">G - Все возрасты</option>
+            <option value="pg">PG - Детям</option>
+            <option value="pg13">PG-13</option>
+            <option value="r">R - Ограничение по возрасту</option>
+            <option value="nc17">NC-17</option>
+        </select>
+    </div>
+
+
+            <button type="submit" class="filter-btn">Применить фильтры</button>
+        </form>
+    
+</div>
     <div id="list_anime_main"  class="list_anime_main"></div>
     <div id="pagination-container"></div>
         <footer class="footer">

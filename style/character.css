@@ -1,5 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+/* Стилизация скроллбара */
+::-webkit-scrollbar {
+    width: 12px;  /* Ширина вертикального скроллбара */
+    height: 12px; /* Высота горизонтального скроллбара */
+}
+
+/* Стилизация ползунка скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Цвет ползунка */
+    border-radius: 10px; /* Скругление углов */
+    border: 3px solid #444; /* Обводка вокруг ползунка */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета при наведении */
+}
+
+/* Стилизация ползунка скроллбара при наведении */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Цвет ползунка при наведении */
+}
+
+/* Стилизация области трека (фона скроллбара) */
+::-webkit-scrollbar-track {
+    background-color: #333; /* Цвет фона области скроллбара */
+    border-radius: 10px; /* Скругление углов */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3); /* Тень внутри области */
+}
+
+/* Стилизация области трека при наведении */
+::-webkit-scrollbar-track:hover {
+    background-color: #444; /* Цвет фона области при наведении */
+}
+
+/* Стилизация области для горизонтального скроллбара */
+::-webkit-scrollbar-horizontal {
+    height: 8px;
+}
+
+/* Стилизация области для вертикального скроллбара */
+::-webkit-scrollbar-vertical {
+    width: 8px;
+}
 
 body {
     font-family: 'Roboto'; 
@@ -66,7 +106,7 @@ body {
     font-family: var(--font-family-heading);
     width: 100%;
     flex: 0 0 70%;
-    margin: 1.5em;
+    margin: 0 1.5em 1.5em 1.5em;
     font-size: 20px;
     display: flex;
     gap: 10px;
@@ -99,7 +139,8 @@ body {
 }
 .character-link{
     display: flex;
-    width: 280px;
+    flex-direction: column;
+    width: 210px;
     margin: 1em;
     gap: 10px;
 }
@@ -137,9 +178,11 @@ body {
 }
 
 .title_name {
+    width: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    flex-wrap: wrap;
     flex-direction: column;
     color: white;
 }
@@ -163,25 +206,24 @@ h3 {
 .details {
     width: 100%;
     display: flex;
-    align-items: end;
+    align-items: start;
+    text-align: left;
     justify-content: space-between;
    
 }
 
 .aside {
     position: relative;
-    padding: 20px;
+    top: 0;
     box-shadow: 0 0px 18px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 35px;
 }
 
 .collection_name {
     width: 100%;
-    padding: 10px;
-    font-size: 20px;
-    padding: 1em;
+    font-size: 20px; 
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -189,9 +231,12 @@ h3 {
 }
 
 .collection_name h2 {
+    border-radius: 30px;
+    border:  1px solid;
+    padding: 1em;
     color: #fff;
     font-size: 18px;
-    margin: .4em 0;
+    margin: .4em ;
 }
 
 .collection_name span {

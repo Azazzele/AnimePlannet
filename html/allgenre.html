@@ -1,0 +1,83 @@
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Planetium - место для фанатов аниме и манги. Обзор каталогов, форум и многое другое.">
+        <meta name="keywords" content="аниме, манга, каталог, форум, Planetium">
+        <meta name="author" content="Ваше имя или название компании">
+        <meta property="og:title" content="Planetium - Аниме и Манга">
+        <meta property="og:description" content="Обзор аниме, манги и многое другое. Присоединяйтесь к нашему сообществу!">
+        <meta property="og:image" content="https://via.placeholder.com/150x50">
+        <meta property="og:url" content="https://ваш-сайт.com">
+        <link rel="icon" href="https://via.placeholder.com/16x16" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="../style/main.css">
+        <link rel="stylesheet" href="../style/reset.css">
+        <title>Planetium</title>
+    </head>
+<body>
+     <div id="page_up" class="scroll-to-top">
+            ↑
+        </div>
+    <nav class="navigate" aria-label="Основная навигация">
+        <div class="logo" aria-label="Логотип Planetium">
+            <img src="https://via.placeholder.com/150x50" alt="Planetium Logo">
+        </div>
+
+    <div class="nav-links">
+        <div class="drop_menu" id="dropdown_menubar" aria-expanded="false">Каталог <i class="fa fa-ellipsis-v"></i></div>
+        <ul class="drpdown_link" role="menubar" id="dropdown-menu">
+            <li class="tab_navigate" role="none">
+                <a href="../index.html" class="link_navigate" id="home-link" aria-current="page" role="menuitem">
+                    <i class="fas fa-house-user" aria-hidden="true"></i> Главная
+                </a>
+            </li>
+            <li class="tab_navigate" role="none">
+                <a href="../html/anilist.html" class="link_navigate" id="anime-link" role="menuitem">
+                    <i class="fas fa-tv" aria-hidden="true"></i> Аниме список
+                </a>
+            </li>
+            <li class="tab_navigate" role="none">
+                <a href="../html/mangaspisok.html" class="link_navigate" id="manga-link" role="menuitem">
+                    <i class="fas fa-book-open" aria-hidden="true"></i> Манга список
+                </a>
+            </li>
+            <li class="tab_navigate" role="none">
+                <a href="#" class="link_navigate" id="catalog-link" role="menuitem">
+                    <i class="fas fa-list-ul" aria-hidden="true"> Мой список</i> 
+                </a>
+            </li>
+            <li class="tab_navigate" role="none">
+                <a href="#" class="link_navigate" id="forum-link" role="menuitem">
+                    <i class="fas fa-comment-dots" aria-hidden="true"></i> Форум
+                </a>
+            </li>
+        </ul>
+        
+        <!-- Строка поиска -->
+        <div class="search-container">
+            <form action="" method="get">
+                <input type="text" name="query" id="search" placeholder="Поиск..." class="search-input">
+                <button type="submit" class="search-btn" id="button_search">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+        
+        <!-- Профиль с иконкой -->
+        <div class="profile-container">
+            <a href="#" class="profile-link" aria-label="Профиль">
+                <i class="fas fa-user-alt" aria-hidden="true"></i> 
+            </a>
+        </div>
+    </div>
+    </nav>
+        <div class="tabsallgenre"></div>
+
+        <script src="../script/animation_main.js"></script>
+        <script src="../script/search.js"></script>
+        <script src="../script/navbar.js"></script>
+        <script   type="module" src="../script/genre.js"></script>
+</body>
+</html>

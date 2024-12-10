@@ -13,11 +13,11 @@ export function getStatusText(status) {
 export function getFormatText(format) {
   switch(format) {
     case 'TV': return 'Тв сериал';
-    case 'OVA': return 'OVA (Оригинальные Видео Анимации)';
+    case 'OVA': return 'OVA';
     case 'MOVIE': return 'Фильм';
     case 'MUSIC': return 'Музыкальное видео';
     case 'SPECIAL': return 'Специальный эпизод';
-    case 'ONA': return 'ONA (Оригинальные Сетевые Анимации)';
+    case 'ONA': return 'ONA';
     case 'MANGA': return 'Манга';
     case 'NOVEL': return 'Ранобэ';
     default: return 'Неизвестный формат';
@@ -82,14 +82,27 @@ export function getGenres(genres) {
     }
   }).join(', '); // Возвращаем строку с жанрами, разделёнными запятой
 }
-
-
-
+export function getSesone(sesone){
+  switch (sesone) {
+    case 'SUMMER':{
+        return 'Лето';
+      }
+      case 'WINTER':{
+        return 'Зима';
+      }
+      case 'SPRING':{
+          return 'Весна';
+      }
+      case 'FALL':{
+          return 'Осень';
+      }
+  }
+}
 // Функция для получения имени месяца по его номеру
 export function getMonthName(monthNumber) {
     const months = [
-      'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-      'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+      'Января', 'Февраля', 'Марта', 'Апреля', 'Майа', 'Июня',
+      'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабрья'
     ];
     return months[monthNumber - 1] || 'Неизвестно'; // monthNumber начинается с 1
 }
@@ -104,20 +117,27 @@ export function getGenderInRussian(gender) {
         return 'Неизвестно';
     }
 }
-// Массив с названиями месяцев
+// Массив для перевода числового месяца в название
 const monthNames = [
   'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
   'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
 ];
-
 // Функция для получения строки даты рождения
 export function getBirthDateString(birthDate) {
-    const day = birthDate.day != null ? birthDate.day : 'Неизвестно';
-    const month = birthDate.month != null ? monthNames[birthDate.month - 1] : 'Неизвестно'; // Месяц приходит от 1 до 12
-    const year = birthDate.year != null ? birthDate.year : 'Неизвестно';
-    return `${day} ${month} ${year}`;
-}
+    const day = birthDate.day != null ? birthDate.day : null;
+    const month = birthDate.month != null ? monthNames[birthDate.month - 1] : null; // Месяц приходит от 1 до 12
+    const year = birthDate.year != null ? birthDate.year : null;
 
+    // Если все значения неопределены, возвращаем "Неизвестно"
+    if (day === null && month === null && year === null) {
+        return 'Неизвестно';
+    }
+
+    // Если хотя бы одно значение неопределено, заменяем его на "Неизвестно"
+    const dateString = `${day !== null ? day : ''} ${month !== null ? month : ''} ${year !== null ? year : ''}`.trim();
+
+    return dateString || 'Неизвестно'; // Если строка пустая, то возвращаем "Неизвестно"
+}
 // Функция для проверки, является ли сегодня день рождения персонажа
 export function checkBirthday(birthDate) {
     const today = new Date();
